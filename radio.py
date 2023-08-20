@@ -2,6 +2,7 @@ import sys
 import time
 import os, subprocess
 import math
+import tm1637
 from rotary_class import RotaryEncoder
 
 # Define GPIO inputs
@@ -9,9 +10,14 @@ PIN_A = 18 	# Pin 8
 PIN_B = 17	# Pin 10
 BUTTON = 4	# Pin 7
 
+# Define display
+tm = tm1637.TM1637(clk=5, dio=6)
+
+
+
 # clear and reload stations
 os.system("mpc clear")
-os.system("mpc load rad")
+os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
@@ -62,6 +68,7 @@ def setPlay(p):
     print("setplay %i" % p)
     global play, s
     if p != play:
+        tm.numbers(00,p)
         play = p
         print('play %i' % p)
         if p != 0 and p < 99:
