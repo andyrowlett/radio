@@ -1,0 +1,20 @@
+#EXTM3U
+#EXTINF:1, BBC 3
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_radio_three.mpd
+#EXTINF:2, BBC 4
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourfm.m3u8
+#EXTINF:3, WBUR
+http://wbur-sc.streamguys.com:80/
+#EXTINF:4, BBC 6 Music
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_6music.mpd
+#EXTINF:5, HBR1 - Dream Factory
+http://radio.hbr1.com/stream/ambient.aac
+#EXTINF:6, Nightride FM
+https://stream.nightride.fm/nightride.m4a
+#EXTINF:7, Nightride Chillsynth
+https://stream.nightride.fm/chillsynth.m4a
+#EXTINF:7, UK 1940s
+http://1940sradio1.co.uk:8100/1%20
+
+
+
