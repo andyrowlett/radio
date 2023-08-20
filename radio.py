@@ -12,7 +12,20 @@ BUTTON = 4	# Pin 7
 
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
+tm1 = 00
+tm2 = 00
 
+
+def tmdisp(p, v):
+    global tm1,tm2
+    if p == 1:
+        tm1 = v
+    elif p == 2:
+        tm2 = v
+    tm.numbers(tm1, tm2)
+    
+
+tmdisp(1, 00)
 
 
 # clear and reload stations
@@ -52,6 +65,7 @@ def switch_event(event):
     elif event == RotaryEncoder.BUTTONUP:
         print("Button up")
     print(v)
+    tmdisp(1, v)
     if v < 1:
         setPlay(0)
     elif v > 1:
@@ -63,12 +77,12 @@ def switch_event(event):
 
 play = 0
 
-
 def setPlay(p):
     print("setplay %i" % p)
     global play, s
     if p != play:
-        tm.numbers(00,p)
+        #tm.numbers(00,p)
+        tmdisp(2, p)
         play = p
         print('play %i' % p)
         if p != 0 and p < 99:
