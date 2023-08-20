@@ -11,12 +11,13 @@ PIN_B = 17	# Pin 10
 BUTTON = 4	# Pin 7
 
 # Define display
-tm = tm1637.TM1637(clk=5, dio=6)
-tm1 = 00
-tm2 = 00
+#tm = tm1637.TM1637(clk=5, dio=6)
+#tm1 = 00
+#tm2 = 00
 
 
 def tmdisp(p, v):
+    return False
     global tm1,tm2
     if p == 1:
         tm1 = v
