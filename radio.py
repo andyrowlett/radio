@@ -3,12 +3,21 @@ import time
 import os, subprocess
 import math
 import tm1637
+import signal
+import RPi.GPIO as GPIO
 from rotary_class import RotaryEncoder
+
+def button_pressed(e):
+	print("button")
 
 # Define GPIO inputs
 PIN_A = 18 	# Pin 8 
 PIN_B = 17	# Pin 10
 BUTTON = 4	# Pin 7
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, 
+	callback=button_pressed, bouncetime=100)
 
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
