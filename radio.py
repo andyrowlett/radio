@@ -17,18 +17,20 @@ tm2 = 00
 
 
 def tmdisp(p, v):
+    n = '{0:0{width}}'.format(v, width=2)
     global tm1,tm2
     if p == 1:
         tm1 = v
     elif p == 2:
         tm2 = v
-    tm.numbers(tm1, tm2)
-    
+    tm.show("  " + str(n))
+#    tm.show("  " + str(tmp2))
 
 tmdisp(1, 00)
 
 
 # clear and reload stations
+os.system("mpc stop")
 os.system("mpc clear")
 os.system("mpc load playlist")
 os.system("mpc repeat off")
@@ -65,12 +67,12 @@ def switch_event(event):
     elif event == RotaryEncoder.BUTTONUP:
         print("Button up")
     print(v)
-    tmdisp(1, v)
+    #tmdisp(1, v)
     if v < 1:
         setPlay(0)
-    elif v > 1:
-        r = 1 + math.floor(v / tps)
-        setPlay(r)
+    elif v >= 1:
+        #r = 1 + math.floor(v / tps)
+        setPlay(v)
 
 
     return
