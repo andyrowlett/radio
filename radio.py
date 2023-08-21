@@ -3,8 +3,7 @@ import time
 import os, subprocess
 import math
 import tm1637
-import signal
-import RPi.GPIO as GPIO
+
 from rotary_class import RotaryEncoder
 
 def button_pressed(e):
@@ -14,10 +13,6 @@ def button_pressed(e):
 PIN_A = 18 	# Pin 8 
 PIN_B = 17	# Pin 10
 BUTTON = 4	# Pin 7
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, 
-	callback=button_pressed, bouncetime=100)
 
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
@@ -57,31 +52,41 @@ def get_max():
 
 
 max = get_max()
-v = 0
+s = 0
+b = 0
 
+def button_event():
+	global b
+	if b==0:
+		b = 1
+	else:
+		b = 0
 
 # This is the event callback routine to handle events
 def switch_event(event):
-    global v, s
+    global s
     if event == RotaryEncoder.CLOCKWISE:
-        if v < max:
-            v += 1
-        time.sleep(0.1)
+	if b == 0:
+        	if s < max:
+            		s += 1
+        	time.sleep(0.1)
     elif event == RotaryEncoder.ANTICLOCKWISE:
-        if v > min:
-            v -= 1
-        time.sleep(0.05)
+	if b == 0:
+        	if s > min:
+            		s -= 1
+        	time.sleep(0.05)
     elif event == RotaryEncoder.BUTTONDOWN:
         print("Button down")
     elif event == RotaryEncoder.BUTTONUP:
         print("Button up")
-    print(v)
+	    
+    print(s)
     #tmdisp(1, v)
-    if v < 1:
+    if s < 1:
         setPlay(0)
     elif v >= 1:
         #r = 1 + math.floor(v / tps)
-        setPlay(v)
+        setPlay(s)
 
 
     return
@@ -90,7 +95,7 @@ play = 0
 
 def setPlay(p):
     print("setplay %i" % p)
-    global play, s
+    global play
     if p != play:
         #tm.numbers(00,p)
         tmdisp(2, p)
