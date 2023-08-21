@@ -61,7 +61,7 @@ def switch_event(event):
     elif event == RotaryEncoder.ANTICLOCKWISE:
         if v > min:
             v -= 1
-        time.sleep(0.1)
+        time.sleep(0.05)
     elif event == RotaryEncoder.BUTTONDOWN:
         print("Button down")
     elif event == RotaryEncoder.BUTTONUP:
@@ -89,7 +89,7 @@ def setPlay(p):
         print('play %i' % p)
         if p != 0 and p < 99:
             s = 0
-            os.system("mpc stop")
+            #os.system("mpc stop")
             os.system("mpc play %i" % p)
         else:
             os.system("mpc stop")
