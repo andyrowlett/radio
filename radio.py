@@ -60,6 +60,7 @@ b = 0 # button state
 v = 75 # volume
 v_step = 5 # vol step
 
+
 def volume(cmd, val):
 	global v
 	if cmd == 'set':
@@ -74,7 +75,10 @@ def volume(cmd, val):
 			v = v - val
 		else:
 			v = 0
-	os.system("amixer set Master %i%" % v)
+	os.system("amixer set Master %i%%" % v)
+	tmdisp('v',v)
+
+volume('set',v)
 
 def button_event():
 	global b
@@ -83,6 +87,7 @@ def button_event():
 		tmdisp('v',v)
 	else:
 		b = 0
+		tmdisp('s',play)
 	print("b:%i" % b)
 
 # This is the event callback routine to handle events
@@ -139,10 +144,6 @@ def setPlay(p):
 
 # Define the switch
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,switch_event)
-
-print("Pin A "+ str(PIN_A))
-print("Pin B "+ str(PIN_B))
-print("BUTTON "+ str(BUTTON))
 
 # Listen
 while True:
