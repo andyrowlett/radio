@@ -12,7 +12,7 @@ def button_pressed(e):
 # Define GPIO inputs
 PIN_A = 18 	# Pin 8 
 PIN_B = 17	# Pin 10
-BUTTON = 4	# Pin 7
+BUTTON = 21	# Pin 7
 
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
@@ -84,7 +84,7 @@ def button_event():
 
 # This is the event callback routine to handle events
 def switch_event(event):
-	global s
+	global s,b
 	if event == RotaryEncoder.CLOCKWISE:
 		if b == 0:
 			if s < max:
@@ -99,7 +99,7 @@ def switch_event(event):
 		print("Button down")
 	elif event == RotaryEncoder.BUTTONUP:
 		print("Button up")
-		
+		button_event()
 	print(s)
 	#tmdisp(1, v)
 	if s < 1:
