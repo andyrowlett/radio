@@ -6,8 +6,11 @@ import tm1637
 
 from rotary_class import RotaryEncoder
 
-def button_pressed(e):
-	print("button")
+# Vars
+# bounce
+bb = 0.01
+# time sleep
+ts = 0.1
 
 # Define GPIO inputs
 PIN_A = 18 	# Pin 8 
@@ -20,6 +23,16 @@ tm1 = 00
 tm2 = 00
 
 
+tps = 3 # turns per stat
+min = 0
+def get_max():
+	pls = os.popen("mpc playlist").read()
+	pls_list = pls.splitlines()
+	max = (len(pls_list) * tps) + (len(pls_list) - 1) + 2
+	print("Stations: %i Max: %i" % (len(pls_list),max))
+	return max
+
+# display
 def tmdisp(p, v):
 	n = '{0:0{width}}'.format(v, width=2)
 	global tm1,tm2
@@ -40,22 +53,12 @@ os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
-tps = 3 # turns per stat
-min = 0
-
-def get_max():
-	pls = os.popen("mpc playlist").read()
-	pls_list = pls.splitlines()
-	max = (len(pls_list) * tps) + (len(pls_list) - 1) + 2
-	print("Stations: %i Max: %i" % (len(pls_list),max))
-	return max
-
 
 max = get_max()
-s = 0
-b = 0
-v = 75
-step = 5
+s = 0 # station
+b = 0 # button state
+v = 75 # volume
+step = 5 # vol step
 
 def volume(cmd, val):
 	global v
@@ -89,12 +92,13 @@ def switch_event(event):
 		if b == 0:
 			if s < max:
 				s += 1
-			time.sleep(0.1)
+		time.sleep(bb)
+
 	elif event == RotaryEncoder.ANTICLOCKWISE:
 		if b == 0:
 			if s > min:
 				s -= 1
-			time.sleep(0.05)
+		time.sleep(bb)
 	elif event == RotaryEncoder.BUTTONDOWN:
 		print("Button down")
 	elif event == RotaryEncoder.BUTTONUP:
@@ -138,7 +142,7 @@ print("BUTTON "+ str(BUTTON))
 # Listen
 while True:
 	try:
-		time.sleep(0.5)
+		time.sleep(ts)
 	except KeyboardInterrupt:
 		print("Keyboard interrupt")
 		os.system("mpc stop")
