@@ -83,6 +83,7 @@ def button_event():
 		tmdisp('v',v)
 	else:
 		b = 0
+	print("b:%i" % b)
 
 # This is the event callback routine to handle events
 def switch_event(event):
