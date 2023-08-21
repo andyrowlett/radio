@@ -105,9 +105,10 @@ def switch_event(event):
 		time.sleep(bb)
 	elif event == RotaryEncoder.BUTTONDOWN:
 		print("Button down")
+		button_event()
 	elif event == RotaryEncoder.BUTTONUP:
 		print("Button up")
-		button_event()
+		
 	print(s)
 	#tmdisp(1, v)
 	if s < 1:
