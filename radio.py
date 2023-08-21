@@ -75,7 +75,7 @@ def volume(cmd, val):
 			v = v - val
 		else:
 			v = 0
-	os.system("amixer set Master %i%%" % v)
+	os.system("mpc volume %i" % v)
 	tmdisp('v',v)
 
 volume('set',v)
