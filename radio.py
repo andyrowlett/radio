@@ -40,7 +40,7 @@ def tmdisp(p, v):
 		tm1 = v
 	elif p == 2:
 		tm2 = v
-	tm.show("  " + str(n))
+	tm.show(" %s%s" % (p,str(n)))
 #    tm.show("  " + str(tmp2))
 
 tmdisp(1, 00)
@@ -58,7 +58,7 @@ max = get_max()
 s = 0 # station
 b = 0 # button state
 v = 75 # volume
-step = 5 # vol step
+v_step = 5 # vol step
 
 def volume(cmd, val):
 	global v
@@ -74,14 +74,13 @@ def volume(cmd, val):
 			v = v - val
 		else:
 			v = 0
-	
-	
 	os.system("amixer set Master %i%" % v)
 
 def button_event():
 	global b
 	if b==0:
 		b = 1
+		tmdisp('v',v)
 	else:
 		b = 0
 
@@ -92,12 +91,16 @@ def switch_event(event):
 		if b == 0:
 			if s < max:
 				s += 1
+		elif b == 1:
+			volume('+',v_step )
 		time.sleep(bb)
 
 	elif event == RotaryEncoder.ANTICLOCKWISE:
 		if b == 0:
 			if s > min:
 				s -= 1
+		elif b == 1:
+			volume('-',v_step )
 		time.sleep(bb)
 	elif event == RotaryEncoder.BUTTONDOWN:
 		print("Button down")
@@ -122,7 +125,7 @@ def setPlay(p):
 	global play
 	if p != play:
 		#tm.numbers(00,p)
-		tmdisp(2, p)
+		tmdisp('s', p)
 		play = p
 		print('play %i' % p)
 		if p != 0 and p < 99:
