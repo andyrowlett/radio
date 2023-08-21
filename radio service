@@ -1,0 +1,11 @@
+#sudo systemctl --force --full edit radio.service
+[Unit]
+Desc=Radio
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/station/radio/radio.py
+User=station
+
+[Install]
+WantedBy=multi-user.target
