@@ -32,7 +32,7 @@ def get_station_normal_level():
 	try:
 		if levels != type(None):
 			level = levels.group(2)
-			return level
+			return float(level)
 		else:
 			return 1
 	except:
