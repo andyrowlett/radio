@@ -125,7 +125,7 @@ os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
-set_volume('set',v)
+set_volume('set',75)
 display('h', 00)
 
 # Define the switch
