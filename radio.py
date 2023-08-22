@@ -6,60 +6,30 @@ import tm1637
 
 from rotary_class import RotaryEncoder
 
-# Vars
-# bounce
-bb = 0.1
-# time sleep
-ts = 0.2
+## globals
+playing = 0
+station = 0 # station this was really a sort of pseudo frequency...
+button_state = 0 # button state
+v = 75 # volume
+v_step = 5 # vol step
 
-# Define GPIO inputs
-PIN_A = 18 	# Pin 8 
-PIN_B = 17	# Pin 10
-BUTTON = 21	# Pin 7
-
-# Define display
-tm = tm1637.TM1637(clk=5, dio=6)
-tm1 = 00
-tm2 = 00
-
-
-tps = 3 # turns per stat
-min = 0
+## functions
 def get_max():
 	pls = os.popen("mpc playlist").read()
 	pls_list = pls.splitlines()
-	max = (len(pls_list) * tps) + (len(pls_list) - 1) + 2
+	max = len(pls_list)
 	print("Stations: %i Max: %i" % (len(pls_list),max))
 	return max
 
 # display
-def tmdisp(p, v):
+def display(p, v):
 	n = '{0:0{width}}'.format(v, width=2)
 	global tm1,tm2
 	if p == 1:
 		tm1 = v
 	elif p == 2:
 		tm2 = v
-	tm.show(" %s%s" % (p,str(n)))
-#    tm.show("  " + str(tmp2))
-
-tmdisp(1, 00)
-
-
-# clear and reload stations
-os.system("mpc stop")
-os.system("mpc clear")
-os.system("mpc load playlist")
-os.system("mpc repeat off")
-os.system("mpc crossfade 3")
-
-
-max = get_max()
-s = 0 # station
-b = 0 # button state
-v = 75 # volume
-v_step = 5 # vol step
-
+	tm.show("%s %s" % (p,str(n)))
 
 def volume(cmd, val):
 	global v
@@ -76,75 +46,88 @@ def volume(cmd, val):
 		else:
 			v = 0
 	os.system("mpc volume %i" % v)
-	tmdisp('v',v)
-
-volume('set',v)
-
-def button_event():
-	global b
-	if b==0:
-		b = 1
-		tmdisp('v',v)
-	else:
-		b = 0
-		tmdisp('s',play)
-	print("b:%i" % b)
+	display('v',v)
 
 # This is the event callback routine to handle events
-def switch_event(event):
-	global s,b
+def rotary_unit_callback(event):
+	global station, button_state
 	if event == RotaryEncoder.CLOCKWISE:
-		if b == 0:
-			if s < max:
+		if button_state == 0:
+			if station < max:
 				s += 1
-		elif b == 1:
+		elif button_state == 1:
 			volume('+',v_step )
 		time.sleep(bb)
 
 	elif event == RotaryEncoder.ANTICLOCKWISE:
-		if b == 0:
-			if s > min:
+		if button_state == 0:
+			if station > min:
 				s -= 1
-		elif b == 1:
+		elif button_state == 1:
 			volume('-',v_step )
 		time.sleep(bb)
 	elif event == RotaryEncoder.BUTTONDOWN:
-		print("Button down")
-		button_event()
+		if button_state == 0:
+			button_state = 1
+			display('v',v)
+		else:
+			b = 0
+			display('s',playing)
+		print("b:%i" % button_state)
+		return
 	elif event == RotaryEncoder.BUTTONUP:
-		print("Button up")
-		
-	print(s)
-	#tmdisp(1, v)
-	if s < 1:
-		setPlay(0)
+		return
+
+	## this handles changing the station...
+	if station < 1:
+		play_station(0)
 	elif v >= 1:
-		#r = 1 + math.floor(v / tps)
-		setPlay(s)
-
-
+		play_station(station)
 	return
 
-play = 0
-
-def setPlay(p):
-	print("setplay %i" % p)
-	global play
-	if p != play:
+def play_station(play):
+	#print("play_station %i" % p)
+	global playing, station
+	if play != playing:
 		#tm.numbers(00,p)
-		tmdisp('s', p)
-		play = p
-		print('play %i' % p)
-		if p != 0 and p < 99:
-			s = 0
-			#os.system("mpc stop")
-			#os.system("mpc play %i" % p)
-			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % p)
+		display('s', play)
+		playing = play
+		if play != 0 and play < 99:
+			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % play)
 		else:
 			os.system("mpc stop")
 
+# Vars
+# bounce
+bb = 0.1
+# time sleep
+ts = 0.2
+
+# Define GPIO inputs
+PIN_A = 18 	# Pin 8 
+PIN_B = 17	# Pin 10
+BUTTON = 21	# Pin 7
+
+# Define display
+tm = tm1637.TM1637(clk=5, dio=6)
+tm1 = 00
+tm2 = 00
+
+min = 0
+max = get_max()
+
+# clear and reload stations
+os.system("mpc stop")
+os.system("mpc clear")
+os.system("mpc load playlist")
+os.system("mpc repeat off")
+os.system("mpc crossfade 3")
+
+volume('set',v)
+display('h', 00)
+
 # Define the switch
-rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,switch_event)
+rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
 
 # Listen
 while True:
