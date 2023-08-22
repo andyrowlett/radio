@@ -62,6 +62,8 @@ def set_volume(cmd, val):
 	# get the normalisation level
 	x = get_station_normal_level()
 	total_volume = volume * x
+	print(x)
+	print(total_volume)
 	print("Station level: %f Volume: %i Total: %f" % (x, volume, total_volume))
 	os.system("mpc volume %i" % total_volume)
 	display('v',volume)
