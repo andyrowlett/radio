@@ -8,9 +8,9 @@ from rotary_class import RotaryEncoder
 
 # Vars
 # bounce
-bb = 0.01
+bb = 0.1
 # time sleep
-ts = 0.1
+ts = 0.2
 
 # Define GPIO inputs
 PIN_A = 18 	# Pin 8 
@@ -138,7 +138,8 @@ def setPlay(p):
 		if p != 0 and p < 99:
 			s = 0
 			#os.system("mpc stop")
-			os.system("mpc play %i" % p)
+			#os.system("mpc play %i" % p)
+			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % p)
 		else:
 			os.system("mpc stop")
 
