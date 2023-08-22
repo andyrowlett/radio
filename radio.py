@@ -3,6 +3,7 @@ import time
 import os, subprocess
 import math
 import tm1637
+import re
 
 
 from rotary_class import RotaryEncoder
@@ -23,6 +24,16 @@ def get_max():
 	playlist = pls.splitlines()
 	max = len(playlist)
 	return max
+
+def get_station_normal_level():
+	global playlist, playing
+	station_name = playlist[playing]
+	levels = re.search(r"\(([A-Za-z0-9_]+)\)", station_name)
+	if levels != type(None):
+		level = levels.groups(1)
+		return level
+	else:
+		return 1
 
 # display
 def display(p, v):
@@ -48,7 +59,11 @@ def set_volume(cmd, val):
 			volume = volume - val
 		else:
 			volume = 0
-	os.system("mpc volume %i" % volume)
+	# get the normalisation level
+	x = get_station_normal_level()
+	total_volume = volume * x
+	print("Station level: %f Volume: %i Total: %f" % (x, volume, total_volume))
+	os.system("mpc volume %i" % total_volume)
 	display('v',volume)
 
 # This is the event callback routine to handle events
@@ -90,12 +105,13 @@ def rotary_unit_callback(event):
 
 def play_station(play):
 	#print("play_station %i" % p)
-	global playing, station
+	global playing, station, volume
 	if play != playing:
 		#tm.numbers(00,p)
 		display('s', play)
 		playing = play
 		if play != 0 and play < 99:
+			set_volume('set', volume)
 			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % play)
 		else:
 			os.system("mpc stop")
