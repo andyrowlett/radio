@@ -65,10 +65,9 @@ def set_volume(cmd, val, ignore=0):
 	# get the normalisation level
 	x = get_station_normal_level()
 	total_volume = volume * x
-	print(x)
-	print(total_volume)
-	print("Station level: %f Volume: %i Total: %f" % (x, volume, total_volume))
-	os.system("mpc volume %i" % total_volume)
+	print("Station %i level: %f Volume: %i Total: %f" % (playing, x, volume, total_volume))
+	#os.system("mpc volume %i" % total_volume)
+	os.system("bash /home/station/radio/shell_cc.sh %i & >/dev/null 2>/dev/null" % total_volume)
 	if not ignore:
 		display('v',volume)
 
