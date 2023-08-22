@@ -48,7 +48,7 @@ def display(p, v):
 		tm2 = v
 	tm.show("%s %s" % (p,str(n)))
 
-def set_volume(cmd, val):
+def set_volume(cmd, val, ignore=0):
 	global volume
 	if cmd == 'set':
 		volume = val
@@ -69,7 +69,8 @@ def set_volume(cmd, val):
 	print(total_volume)
 	print("Station level: %f Volume: %i Total: %f" % (x, volume, total_volume))
 	os.system("mpc volume %i" % total_volume)
-	display('v',volume)
+	if not ignore:
+		display('v',volume)
 
 # This is the event callback routine to handle events
 def rotary_unit_callback(event):
@@ -116,7 +117,7 @@ def play_station(play):
 		display('s', play)
 		playing = play
 		if play != 0 and play < 99:
-			set_volume('set', volume)
+			set_volume('set', volume, 1)
 			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % play)
 		else:
 			os.system("mpc stop")
