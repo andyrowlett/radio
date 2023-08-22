@@ -54,7 +54,7 @@ def rotary_unit_callback(event):
 	if event == RotaryEncoder.CLOCKWISE:
 		if button_state == 0:
 			if station < max:
-				s += 1
+				station += 1
 		elif button_state == 1:
 			volume('+',v_step )
 		time.sleep(bb)
@@ -62,7 +62,7 @@ def rotary_unit_callback(event):
 	elif event == RotaryEncoder.ANTICLOCKWISE:
 		if button_state == 0:
 			if station > min:
-				s -= 1
+				station -= 1
 		elif button_state == 1:
 			volume('-',v_step )
 		time.sleep(bb)
