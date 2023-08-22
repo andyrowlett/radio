@@ -48,8 +48,8 @@ def set_volume(cmd, val):
 			volume = volume - val
 		else:
 			volume = 0
-	os.system("mpc volume %i" % v)
-	display('v',v)
+	os.system("mpc volume %i" % volume)
+	display('v',volume)
 
 # This is the event callback routine to handle events
 def rotary_unit_callback(event):
