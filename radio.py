@@ -10,15 +10,17 @@ from rotary_class import RotaryEncoder
 playing = 0
 station = 0 # station this was really a sort of pseudo frequency...
 button_state = 0 # button state
-v = 75 # volume
+volume = 75 # volume
 v_step = 5 # vol step
+
+playlist = ""
 
 ## functions
 def get_max():
+	global playlist
 	pls = os.popen("mpc playlist").read()
-	pls_list = pls.splitlines()
-	max = len(pls_list)
-	print("Stations: %i Max: %i" % (len(pls_list),max))
+	playlist = pls.splitlines()
+	max = len(playlist)
 	return max
 
 # display
@@ -31,7 +33,7 @@ def display(p, v):
 		tm2 = v
 	tm.show("%s %s" % (p,str(n)))
 
-def volume(cmd, val):
+def set_volume(cmd, val):
 	global v
 	if cmd == 'set':
 		v = val
@@ -56,7 +58,7 @@ def rotary_unit_callback(event):
 			if station < max:
 				station += 1
 		elif button_state == 1:
-			volume('+',v_step )
+			set_volume('+',v_step )
 		time.sleep(bb)
 
 	elif event == RotaryEncoder.ANTICLOCKWISE:
@@ -64,14 +66,14 @@ def rotary_unit_callback(event):
 			if station > min:
 				station -= 1
 		elif button_state == 1:
-			volume('-',v_step )
+			set_volume('-',v_step )
 		time.sleep(bb)
 	elif event == RotaryEncoder.BUTTONDOWN:
 		if button_state == 0:
 			button_state = 1
 			display('v',v)
 		else:
-			b = 0
+			button_state = 0
 			display('s',playing)
 		print("b:%i" % button_state)
 		return
@@ -123,7 +125,7 @@ os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
-volume('set',v)
+set_volume('set',v)
 display('h', 00)
 
 # Define the switch
