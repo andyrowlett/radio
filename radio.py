@@ -71,7 +71,7 @@ def rotary_unit_callback(event):
 	elif event == RotaryEncoder.BUTTONDOWN:
 		if button_state == 0:
 			button_state = 1
-			display('v',v)
+			display('v',volume)
 		else:
 			button_state = 0
 			display('s',playing)
