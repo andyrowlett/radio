@@ -67,7 +67,7 @@ def set_volume(cmd, val, ignore=0):
 	total_volume = volume * x
 	print("Station %i level: %f Volume: %i Total: %f" % (playing, x, volume, total_volume))
 	#os.system("mpc volume %i" % total_volume)
-	os.system("bash /home/station/radio/shell_cc.sh %i & >/dev/null 2>/dev/null" % total_volume)
+	os.system("bash /home/station/radio/shell_vc.sh %i & >/dev/null 2>/dev/null" % total_volume)
 	if not ignore:
 		display('v',volume)
 
