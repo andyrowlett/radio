@@ -4,6 +4,7 @@ import os, subprocess
 import math
 import tm1637
 
+
 from rotary_class import RotaryEncoder
 
 ## globals
@@ -34,25 +35,25 @@ def display(p, v):
 	tm.show("%s %s" % (p,str(n)))
 
 def set_volume(cmd, val):
-	global v
+	global volume
 	if cmd == 'set':
-		v = val
+		volume = val
 	elif cmd == '+':
-		if v + val < 100:
-			v = v + val
+		if volume + val < 100:
+			volume = volume + val
 		else:
-			v = 100
+			volume = 100
 	elif cmd == '-':
-		if v - val > 0:
-			v = v - val
+		if volume - val > 0:
+			volume = volume - val
 		else:
-			v = 0
+			volume = 0
 	os.system("mpc volume %i" % v)
 	display('v',v)
 
 # This is the event callback routine to handle events
 def rotary_unit_callback(event):
-	global station, button_state
+	global station, button_state, volume
 	if event == RotaryEncoder.CLOCKWISE:
 		if button_state == 0:
 			if station < max:
@@ -83,7 +84,7 @@ def rotary_unit_callback(event):
 	## this handles changing the station...
 	if station < 1:
 		play_station(0)
-	elif v >= 1:
+	elif station >= 1:
 		play_station(station)
 	return
 
