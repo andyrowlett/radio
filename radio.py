@@ -26,11 +26,11 @@ def get_max():
 	return max
 
 def get_station_normal_level():
-	global playlist, playing
-	station_name = playlist[playing - 1]
-	print("playing %s" % station_name)
-	levels = re.search(r"(\()([\d*\.?\d+$]+)(\))", station_name)
 	try:
+		global playlist, playing
+		station_name = playlist[playing - 1]
+		print("playing %s" % station_name)
+		levels = re.search(r"(\()([\d*\.?\d+$]+)(\))", station_name)
 		if levels != type(None):
 			level = levels.group(2)
 			return float(level)

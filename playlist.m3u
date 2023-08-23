@@ -1,25 +1,25 @@
 #EXTM3U
-#EXTINF:1, Jazz FM (0.8)
+#EXTINF:1, Jazz FM (0.7)
 https://stream-al.planetradio.co.uk/jazzhigh.aac?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein&aw_0_1st.skey=1692736727
-#EXTINF:2, WBUR (0.75)
+#EXTINF:2, WBUR (0.7)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.95)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_radio_three.mpd
-#EXTINF:4, BBC 4 (0.8)
+#EXTINF:4, BBC 4 (0.75)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourfm.m3u8
-#EXTINF:5, 5 live  (0.8)
+#EXTINF:5, 5 live  (0.75)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_radio_five_live.mpd
-#EXTINF:6, BBC 6 Music  (0.8)
+#EXTINF:6, BBC 6 Music  (0.75)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_6music.mpd
 #EXTINF:7, World service  (0.8)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/nonuk/dash_low/ak/bbc_world_service.mpd
-#EXTINF:8, HBR1 - Dream Factory  (0.75)
+#EXTINF:8, HBR1 - Dream Factory  (0.7)
 http://radio.hbr1.com/stream/ambient.aac
-#EXTINF:9, Nightride FM  (0.75)
+#EXTINF:9, Nightride FM  (0.7)
 https://stream.nightride.fm/nightride.m4a
-#EXTINF:10, Nightride Chillsynth  (0.75)
+#EXTINF:10, Nightride Chillsynth  (0.7)
 https://stream.nightride.fm/chillsynth.m4a
-#EXTINF:11, UK 1940s  (0.75)
+#EXTINF:11, UK 1940s  (0.7)
 http://1940sradio1.co.uk:8100/1%20
 #EXTINF:12, cbeebies  (1)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
