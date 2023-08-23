@@ -124,6 +124,13 @@ def play_station(play):
 		else:
 			os.system("mpc stop")
 
+# clear and reload stations
+os.system("mpc stop")
+os.system("mpc clear")
+os.system("mpc load playlist")
+os.system("mpc repeat off")
+os.system("mpc crossfade 3")
+
 # Vars
 # bounce
 bb = 0.1
@@ -139,16 +146,10 @@ BUTTON = 21	# Pin 7
 tm = tm1637.TM1637(clk=5, dio=6)
 tm1 = 00
 tm2 = 00
-
 min = 0
 max = get_max()
 
-# clear and reload stations
-os.system("mpc stop")
-os.system("mpc clear")
-os.system("mpc load playlist")
-os.system("mpc repeat off")
-os.system("mpc crossfade 3")
+
 
 set_volume('set',75)
 display('h', 00)
