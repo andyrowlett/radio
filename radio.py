@@ -28,6 +28,7 @@ def get_max():
 def get_station_normal_level():
 	global playlist, playing
 	station_name = playlist[playing - 1]
+	print("playing %s" % station_name)
 	levels = re.search(r"(\()([\d*\.?\d+$]+)(\))", station_name)
 	try:
 		if levels != type(None):
@@ -116,8 +117,10 @@ def play_station(play):
 		display('s', play)
 		playing = play
 		if play != 0 and play < 99:
-			set_volume('set', volume, 1)
+			
 			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % play)
+			set_volume('set', volume, 1)
+
 		else:
 			os.system("mpc stop")
 
