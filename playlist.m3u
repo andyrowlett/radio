@@ -1,6 +1,6 @@
 #EXTM3U
-#EXTINF:1, Jazz FM (0.6)
-https://prod-100-24-13-135.amperwave.net/ppm-jazz24aac-hlsc1.m3u8
+#EXTINF:1, Jazz London (0.6)
+http://radio.canstream.co.uk:8075/live.mp3
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.92)
@@ -24,4 +24,4 @@ http://1940sradio1.co.uk:8100/1%20
 #EXTINF:12, cbeebies  (1)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
 #EXTINF:13, Chill (0.7)
-http://media-ice.musicradio.com/ChillMP3.m3u
+http://media-ice.musicradio.com/ChillMP3
