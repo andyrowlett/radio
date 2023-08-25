@@ -25,3 +25,5 @@ http://1940sradio1.co.uk:8100/1%20
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
 #EXTINF:13, Chill (0.7)
 http://media-ice.musicradio.com/ChillMP3
+#EXTINF:14, Classic metal (0.7)
+https://quincy.torontocast.com:2100/stream
