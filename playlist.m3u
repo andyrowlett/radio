@@ -1,6 +1,6 @@
 #EXTM3U
-#EXTINF:1, Jazz London (0.6)
-http://radio.canstream.co.uk:8075/live.mp3
+#EXTINF:1, cbeebies  (1)
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.92)
@@ -13,16 +13,16 @@ http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_five_live/bbc_rad
 http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_6music/bbc_6music.isml/bbc_6music-audio%3d96000.norewind.m3u8
 #EXTINF:7, World service  (0.75)
 http://wsdownload.bbc.co.uk/worldservice/meta/live/shoutcast/mp3/eieuk.pls
-#EXTINF:8, HBR1 - Dream Factory  (0.6)
-http://radio.hbr1.com/stream/ambient.aac
-#EXTINF:9, Nightride FM  (0.6)
-https://stream.nightride.fm/nightride.m4a
-#EXTINF:10, Nightride Chillsynth  (0.6)
-https://stream.nightride.fm/chillsynth.m4a
-#EXTINF:11, UK 1940s  (0.6)
+#EXTINF:8, UK 1940s  (0.6)
 http://1940sradio1.co.uk:8100/1%20
-#EXTINF:12, cbeebies  (1)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
+#EXTINF:9, Jazz London (0.6)
+http://radio.canstream.co.uk:8075/live.mp3
+#EXTINF:10, HBR1 - Dream Factory  (0.6)
+http://radio.hbr1.com/stream/ambient.aac
+#EXTINF:11, Nightride FM  (0.6)
+https://stream.nightride.fm/nightride.m4a
+#EXTINF:12, Nightride Chillsynth  (0.6)
+https://stream.nightride.fm/chillsynth.m4a
 #EXTINF:13, Chill (0.7)
 http://uk2.internet-radio.com:8171
 #EXTINF:14, Classic metal (0.7)
