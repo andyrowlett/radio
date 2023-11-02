@@ -4,7 +4,7 @@ http://radio.canstream.co.uk:8075/live.mp3
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.92)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_radio_three.mpd
+http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_three/bbc_radio_three.isml/bbc_radio_three-audio%3d96000.norewind.m3u8
 #EXTINF:4, BBC 4 (0.7)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourfm.m3u8
 #EXTINF:5, 5 live  (0.7)
@@ -12,7 +12,7 @@ http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full
 #EXTINF:6, BBC 6 Music  (0.7)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/uk/dash_full/ak/bbc_6music.mpd
 #EXTINF:7, World service  (0.75)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/dash/nonuk/dash_low/ak/bbc_world_service.mpd
+http://wsdownload.bbc.co.uk/worldservice/meta/live/shoutcast/mp3/eieuk.pls
 #EXTINF:8, HBR1 - Dream Factory  (0.6)
 http://radio.hbr1.com/stream/ambient.aac
 #EXTINF:9, Nightride FM  (0.6)
