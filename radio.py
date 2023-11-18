@@ -26,6 +26,13 @@ PIN_A = 18 	# Pin 8
 PIN_B = 17	# Pin 10
 BUTTON = 21	# Pin 7
 
+def get_max():
+	global playlist
+	pls = os.popen("mpc playlist").read()
+	playlist = pls.splitlines()
+	max = len(playlist)
+	return max
+
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
 tm1 = 00
@@ -36,12 +43,7 @@ max = get_max()
 playlist = ""
 
 ## functions
-def get_max():
-	global playlist
-	pls = os.popen("mpc playlist").read()
-	playlist = pls.splitlines()
-	max = len(playlist)
-	return max
+
 
 def get_station_normal_level():
 	try:
