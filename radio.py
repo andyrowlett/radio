@@ -15,6 +15,24 @@ button_state = 0 # button state
 volume = 75 # volume
 v_step = 5 # vol step
 
+# Vars
+# bounce
+bb = 0.1
+# time sleep
+ts = 0.2
+
+# Define GPIO inputs
+PIN_A = 18 	# Pin 8 
+PIN_B = 17	# Pin 10
+BUTTON = 21	# Pin 7
+
+# Define display
+tm = tm1637.TM1637(clk=5, dio=6)
+tm1 = 00
+tm2 = 00
+min = 0
+max = get_max()
+
 playlist = ""
 
 ## functions
@@ -131,23 +149,7 @@ os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
-# Vars
-# bounce
-bb = 0.1
-# time sleep
-ts = 0.2
 
-# Define GPIO inputs
-PIN_A = 18 	# Pin 8 
-PIN_B = 17	# Pin 10
-BUTTON = 21	# Pin 7
-
-# Define display
-tm = tm1637.TM1637(clk=5, dio=6)
-tm1 = 00
-tm2 = 00
-min = 0
-max = get_max()
 
 
 
