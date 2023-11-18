@@ -5,7 +5,10 @@ Installation
 Raspbian bullseye - not bookworm (as yet)
 
 package list:
-gh (github cli) mpd
+gh (github cli) mpd mpc python3 python3-pip
+
+python modules:
+tm1634
 
 gh:
 
