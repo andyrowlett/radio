@@ -21,10 +21,10 @@ bb = 0.1
 # time sleep
 ts = 0.2
 
-# Define GPIO inputs
-PIN_A = 18 	# Pin 8 
-PIN_B = 17	# Pin 10
-BUTTON = 21	# Pin 7
+# Define GPIO inputs for rotary encoder
+PIN_A = 24 	
+PIN_B = 17	
+BUTTON = 18	
 
 def get_max():
 	global playlist

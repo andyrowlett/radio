@@ -4,9 +4,9 @@
          (SCL1)  GPIO3---5-|O O|--6--GND
     (GPIO_GLCK)  GPIO4---7-|O O|--8-----GPIO14 (TXD0)
                    GND_--9-|*.O|-10-----GPIO15 (RXD0)
-    (GPIO_GEN0) GPIO17--11-|* *|-12-----GPIO18 (GPIO_GEN1)
+    (GPIO_GEN0) GPIO17--11-|* O|-12-----GPIO18 (GPIO_GEN1)
     (GPIO_GEN2) GPIO27--13-|O O|-14--GND
-    (GPIO_GEN3) GPIO22--15-|O O|-16-----GPIO23 (GPIO_GEN4)
+    (GPIO_GEN3) GPIO22--15-|O *|-16-----GPIO23 (GPIO_GEN4)
                   +3V3--17-|* O|-18-----GPIO24 (GPIO_GEN5)
      (SPI_MOSI) GPIO10--19-|O.*|-20--GND
      (SPI_MISO) GPIO9 --21-|O O|-22-----GPIO25 (GPIO_GEN6)
@@ -17,8 +17,8 @@
                 GPIO6---31-|O O|-32-----GPIO12
                 GPIO13--33-|O O|-34--GND
                 GPIO19--35-|O O|-36-----GPIO16
-                GPIO26--37-|O O|-38-----GPIO20
-                   GND_-39-|* *|-40-----GPIO21
+                GPIO26--37-|O *|-38-----GPIO20
+                   GND_-39-|* O|-40-----GPIO21
                            '---'
                        USB-------ETH
 
