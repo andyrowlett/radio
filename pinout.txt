@@ -46,6 +46,6 @@ Wiring versions:
 
 1 to 2, bonnet comp.
 
-GPIO 18 to 24 (or pin 12 to pin 16)
+GPIO 18 to 23 (or pin 12 to pin 16)
 GPIO 21 to 20 (or pin 40 to pin 38)
 

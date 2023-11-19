@@ -22,9 +22,9 @@ bb = 0.1
 ts = 0.2
 
 # Define GPIO inputs for rotary encoder
-PIN_A = 24 	
+PIN_A = 23 	
 PIN_B = 17	
-BUTTON = 18	
+BUTTON = 20
 
 def get_max():
 	global playlist
