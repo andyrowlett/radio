@@ -13,8 +13,8 @@
      (SPI_SCLK) GPIO11--23-|O O|-24-----GPIO8  (SPI_C0_N)
                    GND_-25-|O O|-26-----GPIO7  (SPI_C1_N)
        (EEPROM) ID_SD---27-|O O|-28-----ID_SC Reserved for ID EEPROM
-                GPIO5---29-|O.O|-30--GND
-                GPIO6---31-|O O|-32-----GPIO12
+                GPIO5---29-|*.O|-30--GND
+                GPIO6---31-|* O|-32-----GPIO12
                 GPIO13--33-|O O|-34--GND
                 GPIO19--35-|O O|-36-----GPIO16
                 GPIO26--37-|O *|-38-----GPIO20
@@ -38,7 +38,7 @@ Rotary encoder
 
 tm1637
 29 - GPIO5      - clk
-31 - GPIO16     - dio
+31 - GPIO6      - dio
 17 - 3V3
 20 - GND
 
