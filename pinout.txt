@@ -1,0 +1,51 @@
+                           .___.              
+                  +3V3---1-|O O|--2--+5V
+          (SDA)  GPIO2---3-|O O|--4--+5V
+         (SCL1)  GPIO3---5-|O O|--6--GND
+    (GPIO_GLCK)  GPIO4---7-|O O|--8-----GPIO14 (TXD0)
+                   GND_--9-|*.O|-10-----GPIO15 (RXD0)
+    (GPIO_GEN0) GPIO17--11-|* *|-12-----GPIO18 (GPIO_GEN1)
+    (GPIO_GEN2) GPIO27--13-|O O|-14--GND
+    (GPIO_GEN3) GPIO22--15-|O O|-16-----GPIO23 (GPIO_GEN4)
+                  +3V3--17-|* O|-18-----GPIO24 (GPIO_GEN5)
+     (SPI_MOSI) GPIO10--19-|O.*|-20--GND
+     (SPI_MISO) GPIO9 --21-|O O|-22-----GPIO25 (GPIO_GEN6)
+     (SPI_SCLK) GPIO11--23-|O O|-24-----GPIO8  (SPI_C0_N)
+                   GND_-25-|O O|-26-----GPIO7  (SPI_C1_N)
+       (EEPROM) ID_SD---27-|O O|-28-----ID_SC Reserved for ID EEPROM
+                GPIO5---29-|O.O|-30--GND
+                GPIO6---31-|O O|-32-----GPIO12
+                GPIO13--33-|O O|-34--GND
+                GPIO19--35-|O O|-36-----GPIO16
+                GPIO26--37-|O O|-38-----GPIO20
+                   GND_-39-|* *|-40-----GPIO21
+                           '---'
+                       USB-------ETH
+
+Radio wiring:
+
+Audiobonnet:
+uses 18, 19,21
+
+Rotary encoder
+
+ 9 - gnd        - rotary ground (middle of 3)
+11 - GPIO17     - rotary enc pinB
+12 - GPIO18     - rotary enc pinA
+
+39 - gnd        - rotary button
+40 - GPIO21     - rotary button
+
+tm1637
+29 - GPIO5      - clk
+31 - GPIO16     - dio
+17 - 3V3
+20 - GND
+
+Wiring versions:
+
+1 to 2, bonnet comp.
+
+GPIO 18 to 24 (or pin 12 to pin 16)
+GPIO 21 to 20 (or pin 40 to pin 38)
+
