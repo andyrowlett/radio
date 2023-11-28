@@ -133,10 +133,11 @@ def rotary_unit_callback(event):
 def play_station(play):
 	#print("play_station %i" % p)
 	to_play = round(play/steps_per_station,0)
+	print(to_play)
 	global playing, station, volume
 	if to_play != playing:
 		#tm.numbers(00,p)
-		display('s', to_play)
+		#display('s', to_play)
 		playing = to_play
 		if to_play != 0 and to_play < 99:
 			
