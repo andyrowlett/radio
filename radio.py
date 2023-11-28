@@ -14,10 +14,11 @@ station = 0 # station this was really a sort of pseudo frequency...
 button_state = 0 # button state
 volume = 75 # volume
 v_step = 5 # vol step
+steps_per_station = 2
 
 # Vars
 # bounce
-bb = 0.1
+bb = 0.15
 # time sleep
 ts = 0.2
 
@@ -31,7 +32,7 @@ def get_max():
 	pls = os.popen("mpc playlist").read()
 	playlist = pls.splitlines()
 	max = len(playlist)
-	return max
+	return max * steps_per_station
 
 # Define display
 tm = tm1637.TM1637(clk=5, dio=6)
@@ -131,14 +132,15 @@ def rotary_unit_callback(event):
 
 def play_station(play):
 	#print("play_station %i" % p)
+	to_play = round(play/steps_per_station,0)
 	global playing, station, volume
-	if play != playing:
+	if to_play != playing:
 		#tm.numbers(00,p)
-		display('s', play)
-		playing = play
-		if play != 0 and play < 99:
+		display('s', to_play)
+		playing = to_play
+		if to_play != 0 and to_play < 99:
 			
-			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % play)
+			os.system("bash /home/station/radio/shell_pc.sh %i & >/dev/null 2>/dev/null" % to_play)
 			set_volume('set', volume, 1)
 
 		else:
