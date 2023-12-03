@@ -14,11 +14,11 @@ station = 0 # station this was really a sort of pseudo frequency...
 button_state = 0 # button state
 volume = 75 # volume
 v_step = 5 # vol step
-steps_per_station = 2
+steps_per_station = 1
 
 # Vars
 # bounce
-bb = 0.15
+bb = 0.3
 # time sleep
 ts = 0.2
 
