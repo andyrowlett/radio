@@ -10,6 +10,9 @@ from time import sleep
 from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
+import time
+
+bb = 0.1
 
 # Load the driver and set it to "display"
 # If you use something from the driver library use the "display." prefix first
@@ -23,9 +26,11 @@ cc.char_1_data = ["11111",
                   "11111",
                   "11111",
                   "11111"]
+cc.load_custom_characters_data()
 station = 0
-
-def rotary_unit_callback():
+max = 10
+min = 0
+def rotary_unit_callback(event):
     global station
     if event == RotaryEncoder.CLOCKWISE:
         if station < max:
@@ -33,6 +38,8 @@ def rotary_unit_callback():
     elif event == RotaryEncoder.ANTICLOCKWISE:
         if station > min:
             station -= 1
+    indicate(station)
+    print(station)
     time.sleep(bb)
     
 
@@ -42,5 +49,14 @@ PIN_B = 17
 BUTTON = 20
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
 
-#display.lcd_display_extended_string(" {0x00} ||()|\[]", 1)
+def indicate(station):
+    pad = ""
+    rpad = " "
+    for i in range(0,station):
+        pad += ' '
+    for i in range(station+1, 16):
+        rpad += ' '
+    display.lcd_display_extended_string(pad + "{0x00}" + rpad, 1)
+
+#display.lcd_display_extended_string(" {0x00}", 1)
 #display.lcd_backlight(1)
