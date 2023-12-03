@@ -25,7 +25,7 @@ cc.char_1_data = ["11111",
                   "11111"]
 station = 0
 
-def rotary_unit_callback():
+def rotary_unit_callback(event):
     global station
     if event == RotaryEncoder.CLOCKWISE:
         if station < max:
