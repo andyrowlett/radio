@@ -28,8 +28,10 @@ cc.char_1_data = ["11111",
                   "11111"]
 cc.load_custom_characters_data()
 station = 0
+
 max = 10
 min = 0
+
 def rotary_unit_callback(event):
     global station
     if event == RotaryEncoder.CLOCKWISE:
