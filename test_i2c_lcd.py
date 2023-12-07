@@ -19,22 +19,21 @@ bb = 0.1
 GPIO.setup(17, GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(18, GPIO.IN, GPIO.PUD_DOWN)
 
-exit
+def none():
+    # Load the driver and set it to "display"
+    # If you use something from the driver library use the "display." prefix first
+    display = drivers.Lcd()
+    cc = drivers.CustomCharacters(display)
+    cc.char_1_data = ["11111",
+                    "11111",
+                    "11111",
+                    "11111",
+                    "11111",
+                    "11111",
+                    "11111",
+                    "11111"]
+    cc.load_custom_characters_data()
 
-# Load the driver and set it to "display"
-# If you use something from the driver library use the "display." prefix first
-display = drivers.Lcd()
-cc = drivers.CustomCharacters(display)
-cc.char_1_data = ["11111",
-                  "11111",
-                  "11111",
-                  "11111",
-                  "11111",
-                  "11111",
-                  "11111",
-                  "11111"]
-cc.load_custom_characters_data()
 
-
-display.lcd_display_extended_string("Hello, zero", 1)
-display.lcd_backlight(1)
+    display.lcd_display_extended_string("Hello, zero", 1)
+    display.lcd_backlight(1)
