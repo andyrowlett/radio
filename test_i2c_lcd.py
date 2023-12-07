@@ -13,11 +13,17 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
 bb = 0.1
 
-GPIO.setup(17, GPIO.IN, GPIO.PUD_UP)
-GPIO.setup(18, GPIO.IN, GPIO.PUD_DOWN)
+def board():
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(17, GPIO.OUT)
+    GPIO.output(17, GPIO.LOW)
+    GPIO.output(18, GPIO.HIGH)
+
+
 
 def none():
     # Load the driver and set it to "display"
@@ -37,3 +43,6 @@ def none():
 
     display.lcd_display_extended_string("Hello, zero", 1)
     display.lcd_backlight(1)
+
+board()
+none()
