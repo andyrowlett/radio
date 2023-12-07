@@ -12,6 +12,8 @@ from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BCM)
+
 bb = 0.1
 
 GPIO.setup(17, GPIO.IN, GPIO.PUD_UP)
