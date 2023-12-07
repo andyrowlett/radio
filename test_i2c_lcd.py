@@ -19,6 +19,8 @@ bb = 0.1
 GPIO.setup(17, GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(18, GPIO.IN, GPIO.PUD_DOWN)
 
+exit
+
 # Load the driver and set it to "display"
 # If you use something from the driver library use the "display." prefix first
 display = drivers.Lcd()
