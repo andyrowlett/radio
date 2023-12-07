@@ -42,6 +42,11 @@ tm1637
 17 - 3V3
 20 - GND
 
+lcd1602
+3 - SDA - GPIO2
+5 - SCL - GPI03
+
+
 Wiring versions:
 
 1 to 2, bonnet comp.

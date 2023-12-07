@@ -27,7 +27,38 @@ cc.char_1_data = ["11111",
                   "11111",
                   "11111"]
 cc.load_custom_characters_data()
+station = 0
 
+max = 10
+min = 0
 
-display.lcd_display_extended_string(" {0x00}", 1)
-display.lcd_backlight(1)
+def rotary_unit_callback(event):
+    global station
+    if event == RotaryEncoder.CLOCKWISE:
+        if station < max:
+            station += 1
+    elif event == RotaryEncoder.ANTICLOCKWISE:
+        if station > min:
+            station -= 1
+    indicate(station)
+    print(station)
+    time.sleep(bb)
+    
+
+# Define GPIO inputs for rotary encoder
+PIN_A = 23 	
+PIN_B = 17	
+BUTTON = 20
+rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
+
+def indicate(station):
+    pad = ""
+    rpad = " "
+    for i in range(0,station):
+        pad += ' '
+    for i in range(station+1, 16):
+        rpad += ' '
+    display.lcd_display_extended_string(pad + "{0x00}" + rpad, 1)
+
+#display.lcd_display_extended_string(" {0x00}", 1)
+#display.lcd_backlight(1)
