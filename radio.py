@@ -96,7 +96,7 @@ is_active = True
 
 # This is the event callback routine to handle events
 def rotary_unit_callback(event):
-	global station, button_state, volume
+	global station, button_state, volume, is_active
 	if not is_active:
 		return False
 	is_active = False
