@@ -92,16 +92,20 @@ def set_volume(cmd, val, ignore=0):
 	if not ignore:
 		display('v',volume)
 
+is_active = True
+
 # This is the event callback routine to handle events
 def rotary_unit_callback(event):
 	global station, button_state, volume
+	if not is_active:
+		return False
+	is_active = False
 	if event == RotaryEncoder.CLOCKWISE:
 		if button_state == 0:
 			if station < max:
 				station += 1
 		elif button_state == 1:
 			set_volume('+',v_step )
-		time.sleep(bb)
 
 	elif event == RotaryEncoder.ANTICLOCKWISE:
 		if button_state == 0:
@@ -109,7 +113,8 @@ def rotary_unit_callback(event):
 				station -= 1
 		elif button_state == 1:
 			set_volume('-',v_step )
-		time.sleep(bb)
+
+
 	elif event == RotaryEncoder.BUTTONDOWN:
 		if button_state == 0:
 			button_state = 1
@@ -118,8 +123,10 @@ def rotary_unit_callback(event):
 			button_state = 0
 			display('s',playing)
 		print("b:%i" % button_state)
+		is_active = True
 		return
 	elif event == RotaryEncoder.BUTTONUP:
+		is_active = True
 		return
 
 	## this handles changing the station...
@@ -127,6 +134,9 @@ def rotary_unit_callback(event):
 		play_station(0)
 	elif station >= 1:
 		play_station(station)
+	
+	time.sleep(bb)
+	is_active = True
 	return
 
 def play_station(play):
