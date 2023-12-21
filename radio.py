@@ -17,7 +17,7 @@ v_step = 5 # vol step
 
 # Vars
 # bounce
-bb = 0.1
+bb = 0.2
 # time sleep
 ts = 0.2
 
