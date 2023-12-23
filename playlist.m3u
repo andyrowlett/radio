@@ -17,13 +17,13 @@ http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low
 http://1940sradio1.co.uk:8100/1%20
 #EXTINF:9, Jazz London (0.6)
 http://radio.canstream.co.uk:8075/live.mp3
-#EXTINF:10, HBR1 - Dream Factory  (0.6)
-http://radio.hbr1.com/stream/ambient.aac
-#EXTINF:11, Nightride FM  (0.6)
-https://stream.nightride.fm/nightride.m4a
-#EXTINF:12, Nightride Chillsynth  (0.6)
-https://stream.nightride.fm/chillsynth.m4a
-#EXTINF:13, Chill (0.7)
+#EXTINF:10, Chill (0.7)
 http://uk2.internet-radio.com:8171
+#EXTINF:11, HBR1 - Dream Factory  (0.6)
+http://radio.hbr1.com/stream/ambient.aac
+#EXTINF:12, Nightride FM  (0.6)
+https://stream.nightride.fm/nightride.m4a
+#EXTINF:13, Nightride Chillsynth  (0.6)
+https://stream.nightride.fm/chillsynth.m4a
 #EXTINF:14, Classic metal (0.7)
 https://quincy.torontocast.com:2100/stream
