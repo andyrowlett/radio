@@ -60,7 +60,8 @@ def get_station_normal_level():
 		return 1
 
 # display
-def display(p, v):
+def display(p, v, b=5):
+	tm.set(b)
 	n = '{0:0{width}}'.format(v, width=2)
 	global tm1,tm2
 	if p == 1:
@@ -152,6 +153,7 @@ def play_station(play):
 			set_volume('set', volume, 1)
 
 		else:
+			display('OF', "0", 2)
 			os.system("mpc stop")
 
 # clear and reload stations
@@ -161,12 +163,8 @@ os.system("mpc load playlist")
 os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
-
-
-
-
 set_volume('set',75)
-display('h', 00)
+display('OF', "0", 2)
 
 # Define the switch
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
