@@ -61,7 +61,7 @@ def get_station_normal_level():
 
 # display
 def display(p, v, b=5):
-	tm.setBrightness(b)
+	tm.brightness(b)
 	n = '{0:0{width}}'.format(v, width=2)
 	global tm1,tm2
 	if p == 1:
