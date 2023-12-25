@@ -1,6 +1,6 @@
 #EXTM3U
 #EXTINF:1, cbeebies  (1)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_low/ak/cbeebies_radio.m3u8
+http://listen-funkids.sharp-stream.com/funkidsjunior.mp3?ref=RF
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.92)
