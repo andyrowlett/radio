@@ -168,7 +168,7 @@ os.system("mpc repeat off")
 os.system("mpc crossfade 3")
 
 set_volume('set',75)
-display('OF', 0, 2)
+disp('OFF', 0)
 
 # Define the switch
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
