@@ -70,6 +70,10 @@ def display(p, v, b=5):
 		tm2 = v
 	tm.show("%s %s" % (p,str(n)))
 
+def disp(text, bright=5):
+	tm.brightness(bright)
+	tm.show(text)
+
 def set_volume(cmd, val, ignore=0):
 	global volume
 	if cmd == 'set':
@@ -153,7 +157,7 @@ def play_station(play):
 			set_volume('set', volume, 1)
 
 		else:
-			display('OF', "0", 2)
+			disp('Off ', 0)
 			os.system("mpc stop")
 
 # clear and reload stations
