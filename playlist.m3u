@@ -1,9 +1,6 @@
 #EXTM3U
 #EXTINF:1, cbeebies  (1)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
-https://as-dash-uk-live.akamaized.net/pool_904/live/uk/cbeebies_radio/cbeebies_radio.isml/dash/cbeebies_radio-audio=320000-266135226.m3u8
-http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_three/bbc_radio_three.isml/bbc_radio_three-audio%3d96000.norewind.m3u8
-https://as-dash-uk-live.akamaized.net/pool_904/live/ww/cbeebies_radio/cbeebies_radio.isml/cbeebies_radio-audio%3d96000.norewind.m3u8
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_low/ak/cbeebies_radio.m3u8
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
 #EXTINF:3, BBC 3 (0.92)
