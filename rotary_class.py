@@ -40,7 +40,8 @@ class RotaryEncoder:
         GPIO.setwarnings(False)
         GPIO.setup(self.pinA, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.pinB, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        if button:
+            GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
         # For version 1 (old) boards comment out the above four lines
         # and un-comment the following 3 lines
