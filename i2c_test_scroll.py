@@ -42,7 +42,7 @@ def rotary_unit_callback(event):
     
 
 # Define GPIO inputs for rotary encoder
-PIN_A = 22 	
+PIN_A = 18 	
 PIN_B = 17	
 BUTTON = 20
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
