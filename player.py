@@ -63,9 +63,9 @@ def volume_callback(event):
         if vol > 0:
             vol -= v_step
     os.system("mpc volume %i" % vol)
-    indicate("vol:%i" % vol)
-    time.sleep(0.25)
-    indicate("%i:%s" % (cur_file, trck_name), 1)
+    indicate("vol:%i" % vol, 2)
+    #time.sleep(0.25)
+    #indicate("%i:%s" % (cur_file, trck_name), 1)
     #time.sleep(bb)
 
 GPIO.setup(5, GPIO.OUT)
