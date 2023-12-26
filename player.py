@@ -58,7 +58,15 @@ GPIO.output(20, GPIO.LOW)
 # Define GPIO inputs for volume
 PIN_VA = 19	
 PIN_VB = 21
-vol = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
+volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
+
+def button_yellow():
+    print("Hi")
+
+
+# Yellow button
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(16, GPIO.BOTH, callback=button_yellow, bouncetime=200)
 
 while True:
     time.sleep(1)
