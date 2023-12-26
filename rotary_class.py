@@ -29,7 +29,8 @@ class RotaryEncoder:
     def __init__(self,pinA,pinB,button,callback):
         self.pinA = pinA
         self.pinB = pinB
-        self.button = button
+        if button:
+            self.button = button
         self.callback = callback
 
         GPIO.setmode(GPIO.BCM)
@@ -50,7 +51,8 @@ class RotaryEncoder:
         # Add event detection to the GPIO inputs
         GPIO.add_event_detect(self.pinA, GPIO.BOTH, callback=self.switch_event)
         GPIO.add_event_detect(self.pinB, GPIO.BOTH, callback=self.switch_event)
-        GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=200)
+        if button:
+            GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=200)
 
 
     # Call back routine called by switch events

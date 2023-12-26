@@ -40,8 +40,7 @@ def rotary_unit_callback(event):
 # Define GPIO inputs for rotary encoder
 PIN_A = 18 	
 PIN_B = 17	
-BUTTON = 0
-rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
+rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)
 
 vol = 50
 def volume_callback(event):
@@ -61,8 +60,7 @@ GPIO.output(20, GPIO.LOW)
 # Define GPIO inputs for volume
 PIN_VA = 19	
 PIN_VB = 21
-BUTTON2 = -1
-vol = RotaryEncoder(PIN_VA,PIN_VB,BUTTON2,volume_callback)
+vol = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 while True:
     time.sleep(1)
