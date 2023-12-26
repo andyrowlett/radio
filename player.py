@@ -22,16 +22,6 @@ st_max = get_max()
 
 display = drivers.Lcd()
 display.lcd_backlight(1)
-cc = drivers.CustomCharacters(display)
-cc.char_1_data = ["11111",
-                "11111",
-                "11111",
-                "11111",
-                "11111",
-                "11111",
-                "11111",
-                "11111"]
-cc.load_custom_characters_data()
 
 def indicate(text, line=1):
     length = len(text)
@@ -44,7 +34,7 @@ indicate("Player 1")
 
 cur_file = 0
 def rotary_unit_callback(event):
-    global cur_file, playlist
+    global cur_file, playlist, trck_name
     if event == RotaryEncoder.ANTICLOCKWISE:
         if cur_file < st_max:
             cur_file += 1
@@ -52,7 +42,10 @@ def rotary_unit_callback(event):
         if cur_file > 1:
             cur_file -= 1
     file_name = playlist[cur_file - 1]
-    indicate("%i - %s" % (cur_file, file_name))
+    auth_name = file_name.split('-')[0]
+    trck_name = file_name.split('-')[1]
+    indicate("%i - %s" % (cur_file, trck_name), 1)
+    #indicate(trck_name, 2)
     #time.sleep(bb)
 
 # Define GPIO inputs for rotary encoder
@@ -87,10 +80,11 @@ play = 0
 def button_yellow(self):
     global play
     if play:
-        play = 1
-        os.system("mpc pause")
-    else:
         play = 0
+        os.system("mpc pause")
+        indicate("Pause", 2)
+    else:
+        play = 1
         os.system("mpc play %i" % cur_file)
         indicate("Playing...", 2)
     print("Yellow button")
