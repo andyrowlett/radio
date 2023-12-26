@@ -53,11 +53,11 @@ def volume_callback(event):
     indicate("vol:%i" % vol)
     #time.sleep(bb)
 
-GPIO.setup(20, GPIO.OUT)
-GPIO.output(20, GPIO.LOW)
+GPIO.setup(5, GPIO.OUT)
+GPIO.output(5, GPIO.LOW)
 # Define GPIO inputs for volume
-PIN_VA = 19	
-PIN_VB = 21
+PIN_VA = 6
+PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 def button_yellow(self):
@@ -65,8 +65,8 @@ def button_yellow(self):
 
 
 # Yellow button
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(16, GPIO.BOTH, callback=button_yellow, bouncetime=200)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(23, GPIO.BOTH, callback=button_yellow, bouncetime=200)
 
 while True:
     time.sleep(1)
