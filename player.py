@@ -19,8 +19,8 @@ cc.char_1_data = ["11111",
 cc.load_custom_characters_data()
 
 def indicate(text, line=1):
-    len = len(text)
-    for i in range(len, 16):
+    length = len(text)
+    for i in range(length, 16):
         text += " "
     display.lcd_display_string(text, 1)
 
