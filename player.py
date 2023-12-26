@@ -79,6 +79,7 @@ def button_yellow(self):
     print("Yellow button")
     
 def button_red(self):
+    os.system("mpc stop")
     print("red")
 
 def button_green(self):
@@ -89,10 +90,10 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=200)
 # Yellow button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(24, GPIO.BOTH, callback=button_red, bouncetime=200)
+GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=200)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(25, GPIO.BOTH, callback=button_green, bouncetime=200)
+GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=200)
 
 while True:
     time.sleep(1)
