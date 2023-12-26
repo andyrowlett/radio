@@ -18,7 +18,10 @@ cc.char_1_data = ["11111",
                 "11111"]
 cc.load_custom_characters_data()
 
-def indicate(text):
+def indicate(text, line=1):
+    len = len(text)
+    for i in range(len, 16)
+    text += " "
     display.lcd_display_string(text, 1)
 
 indicate("Hi, startup")
@@ -63,8 +66,16 @@ PIN_VA = 6
 PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
+play = 0
+
 def button_yellow(self):
-    os.system("mpc play %i" % station)
+    global play
+    if play:
+        os.system("mpc pause")
+    else:
+        os.system("mpc play %i" % station)
+    #print("Yellow button")
+    
 
 
 # Yellow button
