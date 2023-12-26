@@ -56,6 +56,8 @@ def volume_callback(event):
 
 GPIO.setup(5, GPIO.OUT)
 GPIO.output(5, GPIO.LOW)
+GPIO.setup(13, GPIO.OUT)
+GPIO.output(13, GPIO.LOW)
 # Define GPIO inputs for volume
 PIN_VA = 6
 PIN_VB = 12
