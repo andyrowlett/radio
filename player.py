@@ -6,9 +6,19 @@ import RPi.GPIO as GPIO
 import time, os
 
 vol = 30
+v_step = 5
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
 os.system("mpc load playlist")
+
+def get_max():
+	global playlist
+	pls = os.popen("mpc playlist").read()
+	playlist = pls.splitlines()
+	max = len(playlist)
+	return max
+
+st_max = get_max()
 
 display = drivers.Lcd()
 display.lcd_backlight(1)
@@ -27,21 +37,22 @@ def indicate(text, line=1):
     length = len(text)
     for i in range(length, 16):
         text += " "
-    display.lcd_display_string(text, 1)
+    display.lcd_display_string(text, line)
 
 indicate("Player 1")
 
 
-station = 0
+cur_file = 0
 def rotary_unit_callback(event):
-    global station
+    global cur_file, playlist
     if event == RotaryEncoder.ANTICLOCKWISE:
-        if station < 10:
-            station += 1
+        if cur_file < st_max:
+            cur_file += 1
     elif event == RotaryEncoder.CLOCKWISE:
-        if station > 0:
-            station -= 1
-    indicate("File:%i" % station)
+        if cur_file > 1:
+            cur_file -= 1
+    file_name = playlist[cur_file - 1]
+    indicate("%i - %s" % (cur_file, file_name))
     #time.sleep(bb)
 
 # Define GPIO inputs for rotary encoder
@@ -54,10 +65,10 @@ def volume_callback(event):
     global vol
     if event == RotaryEncoder.ANTICLOCKWISE:
         if vol < 100:
-            vol += 10
+            vol += v_step
     elif event == RotaryEncoder.CLOCKWISE:
         if vol > 0:
-            vol -= 10
+            vol -= v_step
     os.system("mpc volume %i" % vol)
     indicate("vol:%i" % vol)
     #time.sleep(bb)
@@ -80,7 +91,7 @@ def button_yellow(self):
         os.system("mpc pause")
     else:
         play = 0
-        os.system("mpc play %i" % station)
+        os.system("mpc play %i" % cur_file)
         indicate("Playing...", 2)
     print("Yellow button")
     
