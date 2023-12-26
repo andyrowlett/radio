@@ -61,8 +61,8 @@ GPIO.output(20, GPIO.LOW)
 # Define GPIO inputs for volume
 PIN_VA = 19	
 PIN_VB = 21
-BUTTON = 0
-vol = RotaryEncoder(PIN_VA,PIN_VB,BUTTON,volume_callback)
+BUTTON2 = 0
+vol = RotaryEncoder(PIN_VA,PIN_VB,BUTTON2,volume_callback)
 
 while True:
     time.sleep(1)
