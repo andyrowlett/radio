@@ -41,7 +41,7 @@ def rotary_unit_callback(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if station > 0:
             station -= 1
-    indicate("station:%i" % station)
+    indicate("File:%i" % station)
     #time.sleep(bb)
 
 # Define GPIO inputs for rotary encoder
@@ -81,10 +81,12 @@ def button_yellow(self):
     else:
         play = 0
         os.system("mpc play %i" % station)
+        indicate("Playing...", 2)
     print("Yellow button")
     
 def button_red(self):
     os.system("mpc stop")
+    indicate("Stop", 2)
     print("red")
 
 def button_green(self):
