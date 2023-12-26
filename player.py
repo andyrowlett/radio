@@ -81,14 +81,13 @@ play = 0
 pause = 0
 
 def button_yellow(self):
-    global play
+    global play, pause
     if play:
         play = 0
         pause = 1
         os.system("mpc pause")
         indicate("Pause", 2)
     else:
-
         if pause == 1:
             os.system("mpc play")
         else:
@@ -99,7 +98,7 @@ def button_yellow(self):
     print("Yellow button")
     
 def button_red(self):
-    global play
+    global play, pause
     play = 0
     pause = 0
     os.system("mpc stop")
