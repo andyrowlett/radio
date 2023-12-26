@@ -44,10 +44,10 @@ rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)
 vol = 50
 def volume_callback(event):
     global vol
-    if event == RotaryEncoder.CLOCKWISE:
+    if event == RotaryEncoder.ANTICLOCKWISE:
         if vol < 100:
             vol += 10
-    elif event == RotaryEncoder.ANTICLOCKWISE:
+    elif event == RotaryEncoder.CLOCKWISE:
         if vol > 0:
             vol -= 10
     indicate("vol:%i" % vol)
@@ -65,7 +65,7 @@ def button_yellow():
 
 
 # Yellow button
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(16, GPIO.BOTH, callback=button_yellow, bouncetime=200)
 
 while True:
