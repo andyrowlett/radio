@@ -86,7 +86,7 @@ def button_green(self):
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(23, GPIO.UP, callback=button_yellow, bouncetime=200)
+GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=200)
 # Yellow button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(24, GPIO.BOTH, callback=button_red, bouncetime=200)
