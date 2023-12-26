@@ -78,20 +78,30 @@ PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 play = 0
+pause = 0
 
 def button_yellow(self):
     global play
     if play:
         play = 0
+        pause = 1
         os.system("mpc pause")
         indicate("Pause", 2)
     else:
-        play = 1
-        os.system("mpc play %i" % cur_file)
+
+        if pause == 1:
+            os.system("mpc play")
+        else:
+            os.system("mpc play %i" % cur_file)
         indicate("Playing...", 2)
+        play = 1
+        pause = 0
     print("Yellow button")
     
 def button_red(self):
+    global play
+    play = 0
+    pause = 0
     os.system("mpc stop")
     indicate("Stop", 2)
     print("red")
