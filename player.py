@@ -43,8 +43,8 @@ def rotary_unit_callback(event):
             cur_file -= 1
     file_name = playlist[cur_file - 1]
     auth_name = file_name.split('-')[0]
-    trck_name = file_name.split('-')[1]
-    indicate("%i - %s" % (cur_file, trck_name), 1)
+    trck_name = file_name.split('-')[1].strip()
+    indicate("%i:%s" % (cur_file, trck_name), 1)
     #indicate(trck_name, 2)
     #time.sleep(bb)
 
@@ -64,6 +64,8 @@ def volume_callback(event):
             vol -= v_step
     os.system("mpc volume %i" % vol)
     indicate("vol:%i" % vol)
+    time.sleep(1)
+    indicate("%i - %s" % (cur_file, trck_name), 1)
     #time.sleep(bb)
 
 GPIO.setup(5, GPIO.OUT)
