@@ -71,10 +71,12 @@ play = 0
 def button_yellow(self):
     global play
     if play:
+        play = 1
         os.system("mpc pause")
     else:
+        play = 0
         os.system("mpc play %i" % station)
-    #print("Yellow button")
+    print("Yellow button")
     
 
 
