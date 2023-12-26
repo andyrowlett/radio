@@ -33,8 +33,7 @@ def rotary_unit_callback(event):
     elif event == RotaryEncoder.ANTICLOCKWISE:
         if station > 0:
             station -= 1
-    indicate(station)
-    print("S=%s" % station)
+    indicate("station:%i" % station)
     #time.sleep(bb)
 
 # Define GPIO inputs for rotary encoder
@@ -51,8 +50,7 @@ def volume_callback(event):
     elif event == RotaryEncoder.ANTICLOCKWISE:
         if vol > 0:
             vol -= 10
-    indicate(station)
-    print("S=%s" % station)
+    indicate("vol:%i" % vol)
     #time.sleep(bb)
 
 GPIO.setup(20, GPIO.OUT)
