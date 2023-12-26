@@ -27,10 +27,10 @@ indicate("Hi, startup")
 station = 0
 def rotary_unit_callback(event):
     global station
-    if event == RotaryEncoder.CLOCKWISE:
+    if event == RotaryEncoder.ANTICLOCKWISE:
         if station < 10:
             station += 1
-    elif event == RotaryEncoder.ANTICLOCKWISE:
+    elif event == RotaryEncoder.CLOCKWISE:
         if station > 0:
             station -= 1
     indicate("station:%i" % station)
