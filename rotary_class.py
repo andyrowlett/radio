@@ -48,13 +48,10 @@ class RotaryEncoder:
         #GPIO.setup(self.button, GPIO.IN)
 
         # Add event detection to the GPIO inputs
-        try:
-            GPIO.add_event_detect(self.pinA, GPIO.BOTH, callback=self.switch_event)
-            GPIO.add_event_detect(self.pinB, GPIO.BOTH, callback=self.switch_event)
-            GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=200)
-        except:
-            print("error")
-        return
+        GPIO.add_event_detect(self.pinA, GPIO.BOTH, callback=self.switch_event)
+        GPIO.add_event_detect(self.pinB, GPIO.BOTH, callback=self.switch_event)
+        GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=200)
+
 
     # Call back routine called by switch events
     def switch_event(self,switch):

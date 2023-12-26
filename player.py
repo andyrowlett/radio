@@ -21,7 +21,7 @@ cc.load_custom_characters_data()
 def indicate(text):
     display.lcd_display_string(text, 1)
 
-indicate("Hi")
+indicate("Hi, startup")
 
 
 station = 0
