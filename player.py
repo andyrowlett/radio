@@ -28,10 +28,10 @@ station = 0
 def rotary_unit_callback(event):
     global station
     if event == RotaryEncoder.CLOCKWISE:
-        if station < max:
+        if station < 10:
             station += 1
     elif event == RotaryEncoder.ANTICLOCKWISE:
-        if station > min:
+        if station > 0:
             station -= 1
     indicate(station)
     print("S=%s" % station)
@@ -43,15 +43,15 @@ PIN_B = 17
 BUTTON = 0
 rswitch = RotaryEncoder(PIN_A,PIN_B,BUTTON,rotary_unit_callback)
 
-volume = 50
+vol = 50
 def volume_callback(event):
-    global volume
+    global vol
     if event == RotaryEncoder.CLOCKWISE:
-        if volume < 100:
-            volume += 10
+        if vol < 100:
+            vol += 10
     elif event == RotaryEncoder.ANTICLOCKWISE:
-        if volume > 0:
-            volume -= 10
+        if vol > 0:
+            vol -= 10
     indicate(station)
     print("S=%s" % station)
     #time.sleep(bb)
