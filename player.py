@@ -50,6 +50,7 @@ def volume_callback(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if vol > 0:
             vol -= 10
+    os.system("mpc volume %i" % vol)
     indicate("vol:%i" % vol)
     #time.sleep(bb)
 
