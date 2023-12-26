@@ -3,7 +3,7 @@ from time import sleep
 from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
-import time
+import time, os
 
 display = drivers.Lcd()
 display.lcd_backlight(1)
@@ -60,8 +60,8 @@ PIN_VA = 19
 PIN_VB = 21
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
-def button_yellow():
-    print("Hi")
+def button_yellow(self):
+    os.system("mpc play %i" % station)
 
 
 # Yellow button
