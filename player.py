@@ -63,3 +63,6 @@ PIN_VA = 19
 PIN_VB = 21
 BUTTON = 0
 vol = RotaryEncoder(PIN_VA,PIN_VB,BUTTON,volume_callback)
+
+while True:
+    time.sleep(1)
