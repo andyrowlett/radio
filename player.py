@@ -5,6 +5,11 @@ from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time, os
 
+vol = 30
+os.system("mpc volume %i" % vol)
+os.system("mpc clear")
+os.system("mpc load playlist")
+
 display = drivers.Lcd()
 display.lcd_backlight(1)
 cc = drivers.CustomCharacters(display)
@@ -24,7 +29,7 @@ def indicate(text, line=1):
         text += " "
     display.lcd_display_string(text, 1)
 
-indicate("Hi, startup")
+indicate("Player 1")
 
 
 station = 0
@@ -44,7 +49,7 @@ PIN_A = 27
 PIN_B = 17	
 rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)
 
-vol = 50
+
 def volume_callback(event):
     global vol
     if event == RotaryEncoder.ANTICLOCKWISE:
