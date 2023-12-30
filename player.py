@@ -9,7 +9,8 @@ vol = 30
 v_step = 5
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
-os.system("mpc load playlist")
+sleep = 1
+os.system("mpc load play-sleep")
 
 def get_max():
 	global playlist
@@ -106,7 +107,19 @@ def button_red(self):
     print("red")
 
 def button_green(self):
-    print("green")
+    global sleep
+    if sleep:
+        sleep = 0
+        os.system("mpc clear")
+        os.system("mpc load play-stories")
+        get_max()
+        indicate("Loaded stories", 2)
+    else:
+        sleep = 1
+        os.system("mpc clear")
+        os.system("mpc load play-stories")
+        get_max()
+        indicate("Loaded stories", 2)       
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
