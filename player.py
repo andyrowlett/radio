@@ -9,7 +9,7 @@ vol = 30
 v_step = 5
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
-sleep = 1
+
 os.system("mpc load play-sleep")
 
 def get_max():
@@ -106,16 +106,17 @@ def button_red(self):
     indicate("Stop", 2)
     print("red")
 
+sleepl = 1
 def button_green(self):
-    global sleep
-    if sleep:
-        sleep = 0
+    global sleepl
+    if sleepl:
+        sleepl = 0
         os.system("mpc clear")
         os.system("mpc load play-stories")
         get_max()
         indicate("Loaded stories", 2)
     else:
-        sleep = 1
+        sleepl = 1
         os.system("mpc clear")
         os.system("mpc load play-stories")
         get_max()
