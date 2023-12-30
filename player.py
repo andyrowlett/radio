@@ -109,7 +109,7 @@ def button_red(self):
 sleepl = 1
 def button_green(self):
     global sleepl
-    if sleepl:
+    if sleepl == 1:
         sleepl = 0
         os.system("mpc clear")
         os.system("mpc load play-stories")
@@ -118,9 +118,9 @@ def button_green(self):
     else:
         sleepl = 1
         os.system("mpc clear")
-        os.system("mpc load play-stories")
+        os.system("mpc load play-sleep")
         get_max()
-        indicate("Loaded stories", 2)       
+        indicate("Loaded sleep", 2)       
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
