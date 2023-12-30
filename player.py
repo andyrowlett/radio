@@ -32,7 +32,6 @@ def indicate(text, line=1):
 
 indicate("Player 1")
 
-
 cur_file = 0
 def rotary_unit_callback(event):
     global cur_file, playlist, trck_name
@@ -108,29 +107,29 @@ def button_red(self):
 
 sleepl = 1
 def button_green(self):
-    global sleepl
+    global sleepl, st_max
     if sleepl == 1:
         sleepl = 0
         os.system("mpc clear")
         os.system("mpc load play-stories")
-        get_max()
+        st_max = get_max()
         indicate("Loaded stories", 2)
     else:
         sleepl = 1
         os.system("mpc clear")
         os.system("mpc load play-sleep")
-        get_max()
+        st_max = get_max()
         indicate("Loaded sleep", 2)       
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=200)
+GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=400)
 # Yellow button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=200)
+GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=400)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=200)
+GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=400)
 
 while True:
     time.sleep(1)
