@@ -13,7 +13,7 @@ pause = 0
 # switch mode hold the track or playlist selection
 switch_mode = 0
 current_file = 0
-current_list = 0
+current_list = 1
 current_list_name = "play-sleep"
 GPIO.setmode(GPIO.BCM) 
 
@@ -60,15 +60,18 @@ def rotary_unit_callback_p(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if current_list > 1:
             current_list -= 1
+    
     show_playlist()
 
 def show_track():
-    global current_file
+    global current_file, Playlist
+    Playlist.reinit()
     file_name = Playlist.get_track(current_file)
     indicate("%i:%s" % (current_file, file_name), 1)
 
 def show_playlist():
-    global current_list
+    global current_list, Playlist
+    Playlist.reinit()
     current_list_name = Playlist.get_playlist(current_list)
     indicate("%i:%s" % (current_list, current_list_name), 1)
 
@@ -166,7 +169,7 @@ PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 indicate("Player 1")
-indicate("4 Beth & Sophie")
+indicate("4 Beth & Sophie", 2)
 
 try:
     while True:
