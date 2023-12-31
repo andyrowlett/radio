@@ -84,7 +84,8 @@ def button_yellow(self):
         os.system("mpc load %s" % current_list_name)
         indicate("Loaded %s" % current_list_name, 2)
         current_file = 0
-        switch_mode = 0
+        # call green button to switch back
+        button_green(False)
 
     else:
         if play:
