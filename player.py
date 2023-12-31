@@ -12,6 +12,7 @@ play = 0
 pause = 0
 sleepl = 1
 current_file = 0
+GPIO.setmode(GPIO.BOARD) 
 
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
