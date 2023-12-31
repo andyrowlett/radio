@@ -63,7 +63,10 @@ def rotary_unit_callback_p(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if current_list > 1:
             current_list -= 1
-    current_list_name = Playlist.playlists[current_list - 1].split('.')[0]
+    try:
+        current_list_name = Playlist.playlists[current_list - 1].split('.')[0]
+    except:
+        current_list_name = Playlist.playlists[current_list - 1]
     indicate("%i:%s" % (current_list, current_list_name), 1)
 
 
