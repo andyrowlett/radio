@@ -7,6 +7,7 @@ class Playlist:
 		self.playlist_length = len(self.playlist)
 
 	def __init__(self):
+		os.chdir("/home/station/radio/")
 		self.reinit()
 		self.playlists = glob.glob("*.m3u")
 		self.playlists_length = len(self.playlists)
