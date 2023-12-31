@@ -3,23 +3,21 @@ from time import sleep
 from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
-import time, os
+import time, os, cls_mpc
 
+# Define vars to track what is happening
 vol = 30
 v_step = 5
+play = 0
+pause = 0
+sleepl = 1
+current_file = 0
+
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
-
 os.system("mpc load play-sleep")
 
-def get_max():
-	global playlist
-	pls = os.popen("mpc playlist").read()
-	playlist = pls.splitlines()
-	max = len(playlist)
-	return max
-
-st_max = get_max()
+Playlist = cls_mpc.Playlist()
 
 display = drivers.Lcd()
 display.lcd_backlight(1)
@@ -30,28 +28,18 @@ def indicate(text, line=1):
         text += " "
     display.lcd_display_string(text, line)
 
-indicate("Player 1")
-
-cur_file = 0
 def rotary_unit_callback(event):
-    global cur_file, playlist, trck_name
+    global current_file, Playlist, trck_name
     if event == RotaryEncoder.ANTICLOCKWISE:
-        if cur_file < st_max:
-            cur_file += 1
+        if current_file < Playlist.playlist_length:
+            current_file += 1
     elif event == RotaryEncoder.CLOCKWISE:
-        if cur_file > 1:
-            cur_file -= 1
-    file_name = playlist[cur_file - 1]
+        if current_file > 1:
+            current_file -= 1
+    file_name = Playlist.playlist[current_file - 1]
     auth_name = file_name.split('-')[0]
     trck_name = file_name.split('-')[1].strip()
-    indicate("%i:%s" % (cur_file, trck_name), 1)
-    #indicate(trck_name, 2)
-    #time.sleep(bb)
-
-# Define GPIO inputs for rotary encoder
-PIN_A = 27	
-PIN_B = 17	
-rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)
+    indicate("%i:%s" % (current_file, trck_name), 1)
 
 
 def volume_callback(event):
@@ -64,21 +52,7 @@ def volume_callback(event):
             vol -= v_step
     os.system("mpc volume %i" % vol)
     indicate("vol:%i" % vol, 2)
-    #time.sleep(0.25)
-    #indicate("%i:%s" % (cur_file, trck_name), 1)
-    #time.sleep(bb)
 
-GPIO.setup(5, GPIO.OUT)
-GPIO.output(5, GPIO.LOW)
-GPIO.setup(13, GPIO.OUT)
-GPIO.output(13, GPIO.LOW)
-# Define GPIO inputs for volume
-PIN_VA = 6
-PIN_VB = 12
-volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
-
-play = 0
-pause = 0
 
 def button_yellow(self):
     global play, pause
@@ -91,7 +65,7 @@ def button_yellow(self):
         if pause == 1:
             os.system("mpc play")
         else:
-            os.system("mpc play %i" % cur_file)
+            os.system("mpc play %i" % current_file)
         indicate("Playing...", 2)
         play = 1
         pause = 0
@@ -105,20 +79,19 @@ def button_red(self):
     indicate("Stop", 2)
     print("red")
 
-sleepl = 1
 def button_green(self):
     global sleepl, st_max
     if sleepl == 1:
         sleepl = 0
         os.system("mpc clear")
         os.system("mpc load play-stories")
-        st_max = get_max()
+        Playlist.reinit()
         indicate("Loaded stories", 2)
     else:
         sleepl = 1
         os.system("mpc clear")
         os.system("mpc load play-sleep")
-        st_max = get_max()
+        Playlist.reinit()
         indicate("Loaded sleep", 2)       
 
 # Yellow button
@@ -130,6 +103,24 @@ GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=400)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=400)
+
+# Setup additional grounds for rotary encoder
+GPIO.setup(5, GPIO.OUT)
+GPIO.output(5, GPIO.LOW)
+GPIO.setup(13, GPIO.OUT)
+GPIO.output(13, GPIO.LOW)
+
+# Define GPIO inputs for rotary encoder
+PIN_A = 27	
+PIN_B = 17	
+rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)
+
+# Define GPIO inputs for volume
+PIN_VA = 6
+PIN_VB = 12
+volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
+
+indicate("Player 1")
 
 while True:
     time.sleep(1)
