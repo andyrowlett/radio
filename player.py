@@ -59,8 +59,7 @@ def rotary_unit_callback_p(event):
             current_list += 1
     elif event == RotaryEncoder.CLOCKWISE:
         if current_list > 1:
-            current_list -= 1
-    
+            current_list -= 1    
     show_playlist()
 
 def show_track():
@@ -70,7 +69,7 @@ def show_track():
     indicate("%i:%s" % (current_file, file_name), 1)
 
 def show_playlist():
-    global current_list, Playlist
+    global current_list, Playlist, current_list_name
     Playlist.reinit()
     current_list_name = Playlist.get_playlist(current_list)
     indicate("%i:%s" % (current_list, current_list_name), 1)
@@ -89,7 +88,7 @@ def volume_callback(event):
 
 
 def button_yellow(self):
-    global play, pause, switch_mode, current_file
+    global play, pause, switch_mode, current_file, current_list
     if switch_mode:
         # in playlist mode, so load that playlist, and return to track mode
         os.system("mpc clear")
