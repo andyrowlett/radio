@@ -165,3 +165,5 @@ try:
 except KeyboardInterrupt:
     print("Keyboard stop, exit...")
     GPIO.cleanup()
+except:
+    GPIO.cleanup()
