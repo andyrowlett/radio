@@ -33,8 +33,11 @@ except:
 def indicate(text, line=1):
     if not lcd_test:
         length = len(text)
-        for i in range(length, 16):
-            text += " "
+        if length < 16:
+            for i in range(length, 16):
+                text += " "
+        else:
+            text = text[:16]
         display.lcd_display_string(text, line)
     else:
         print(text)
