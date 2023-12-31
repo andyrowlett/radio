@@ -7,7 +7,7 @@ class Playlist:
 		self.playlist_length = len(self.playlist)
 
 	def __init__(self):
-		self.reinit(self)
+		self.reinit()
 		
 
 
