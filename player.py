@@ -10,7 +10,7 @@ vol = 30
 v_step = 5
 play = 0
 pause = 0
-sleepl = 1
+# switch mode hold the track or playlist selection
 switch_mode = 0
 current_file = 0
 current_list = 0
@@ -43,20 +43,14 @@ def indicate(text, line=1):
         print(text)
 
 def rotary_unit_callback(event):
-    global current_file, Playlist, trck_name
+    global current_file, Playlist
     if event == RotaryEncoder.ANTICLOCKWISE:
         if current_file < Playlist.playlist_length:
             current_file += 1
     elif event == RotaryEncoder.CLOCKWISE:
         if current_file > 1:
             current_file -= 1
-    file_name = Playlist.playlist[current_file - 1]
-    if "-" in file_name:
-        auth_name = file_name.split('-')[0]
-        trck_name = file_name.split('-')[1].strip()
-    else:
-        trck_name = file_name
-    indicate("%i:%s" % (current_file, trck_name), 1)
+    show_track()
 
 def rotary_unit_callback_p(event):
     global current_list, Playlist, current_list_name
@@ -66,10 +60,16 @@ def rotary_unit_callback_p(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if current_list > 1:
             current_list -= 1
-    try:
-        current_list_name = Playlist.playlists[current_list - 1].split('.')[0]
-    except:
-        current_list_name = Playlist.playlists[current_list - 1]
+    show_playlist()
+
+def show_track():
+    global current_file
+    file_name = Playlist.get_track(current_file)
+    indicate("%i:%s" % (current_file, file_name), 1)
+
+def show_playlist():
+    global current_list
+    current_list_name = Playlist.get_playlist(current_list)
     indicate("%i:%s" % (current_list, current_list_name), 1)
 
 
@@ -94,6 +94,7 @@ def button_yellow(self):
         indicate("Loaded %s" % current_list_name, 2)
         Playlist.reinit()
         current_file = 1
+        show_track()
         # call green button to switch back
         button_green(False)
 
@@ -129,10 +130,14 @@ def button_green(self):
         indicate("Select story", 2)
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback_p)   
         switch_mode = 1
+        Playlist.reinit()
+        show_playlist()
     else:  
         indicate("Select track", 2)
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)   
         switch_mode = 0
+        Playlist.reinit()
+        show_track()
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -161,6 +166,7 @@ PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 indicate("Player 1")
+indicate("4 Beth & Sophie")
 
 try:
     while True:
