@@ -83,6 +83,7 @@ def button_yellow(self):
         os.system("mpc clear")
         os.system("mpc load %s" % current_list_name)
         indicate("Loaded %s" % current_list_name, 2)
+        Playlist.reinit()
         current_file = 0
         # call green button to switch back
         button_green(False)
