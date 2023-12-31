@@ -60,7 +60,7 @@ def rotary_unit_callback_p(event):
     elif event == RotaryEncoder.CLOCKWISE:
         if current_list > 1:
             current_list -= 1
-    current_list_name = Playlist.playlists[current_list - 1]
+    current_list_name = Playlist.playlists[current_list - 1].split('.')[0]
     indicate("%i:%s" % (current_list, current_list_name), 1)
 
 
@@ -77,20 +77,29 @@ def volume_callback(event):
 
 
 def button_yellow(self):
-    global play, pause
-    if play:
-        play = 0
-        pause = 1
-        os.system("mpc pause")
-        indicate("Pause", 2)
+    global play, pause, switch_mode, current_file
+    if switch_mode:
+        # in playlist mode, so load that playlist, and return to track mode
+        os.system("mpc clear")
+        os.system("mpc load %s" % current_list_name)
+        indicate("Loaded %s" % current_list_name, 2)
+        current_file = 0
+        switch_mode = 0
+
     else:
-        if pause == 1:
-            os.system("mpc play")
+        if play:
+            play = 0
+            pause = 1
+            os.system("mpc pause")
+            indicate("Pause", 2)
         else:
-            os.system("mpc play %i" % current_file)
-        indicate("Playing...", 2)
-        play = 1
-        pause = 0
+            if pause == 1:
+                os.system("mpc play")
+            else:
+                os.system("mpc play %i" % current_file)
+            indicate("Playing...", 2)
+            play = 1
+            pause = 0
     print("Yellow button")
     
 def button_red(self):
@@ -140,5 +149,8 @@ volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
 indicate("Player 1")
 
-while True:
-    time.sleep(1)
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()
