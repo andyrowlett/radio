@@ -48,8 +48,11 @@ def rotary_unit_callback(event):
         if current_file > 1:
             current_file -= 1
     file_name = Playlist.playlist[current_file - 1]
-    auth_name = file_name.split('-')[0]
-    trck_name = file_name.split('-')[1].strip()
+    if "-" in file_name:
+        auth_name = file_name.split('-')[0]
+        trck_name = file_name.split('-')[1].strip()
+    else:
+        trck_name = file_name
     indicate("%i:%s" % (current_file, trck_name), 1)
 
 def rotary_unit_callback_p(event):
