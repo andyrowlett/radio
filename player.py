@@ -103,6 +103,8 @@ def button_red(self):
 
 def button_green(self):
     global rswitch, switch_mode
+    GPIO.remove_event_detect(PIN_A)
+    GPIO.remove_event_detect(PIN_B)
     if switch_mode == 0:
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback_p)   
         switch_mode = 1
