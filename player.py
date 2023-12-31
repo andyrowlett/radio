@@ -11,23 +11,33 @@ v_step = 5
 play = 0
 pause = 0
 sleepl = 1
+switch_mode = 0
 current_file = 0
+current_list = 0
+current_list_name = "play-sleep"
 GPIO.setmode(GPIO.BCM) 
 
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
-os.system("mpc load play-sleep")
+os.system("mpc load %s" % current_list_name)
 
 Playlist = cls_mpc.Playlist()
 
-display = drivers.Lcd()
-display.lcd_backlight(1)
+lcd_test = 0
+try:
+    display = drivers.Lcd()
+    display.lcd_backlight(1)
+except:
+    lcd_test = 1
 
 def indicate(text, line=1):
-    length = len(text)
-    for i in range(length, 16):
-        text += " "
-    display.lcd_display_string(text, line)
+    if not lcd_test:
+        length = len(text)
+        for i in range(length, 16):
+            text += " "
+        display.lcd_display_string(text, line)
+    else:
+        print(text)
 
 def rotary_unit_callback(event):
     global current_file, Playlist, trck_name
@@ -41,6 +51,17 @@ def rotary_unit_callback(event):
     auth_name = file_name.split('-')[0]
     trck_name = file_name.split('-')[1].strip()
     indicate("%i:%s" % (current_file, trck_name), 1)
+
+def rotary_unit_callback_p(event):
+    global current_list, Playlist, current_list_name
+    if event == RotaryEncoder.ANTICLOCKWISE:
+        if current_list < Playlist.playlists_length:
+            current_list += 1
+    elif event == RotaryEncoder.CLOCKWISE:
+        if current_list > 1:
+            current_list -= 1
+    current_list_name = Playlist.playlists[current_list - 1]
+    indicate("%i:%s" % (current_list, current_list_name), 1)
 
 
 def volume_callback(event):
@@ -81,19 +102,13 @@ def button_red(self):
     print("red")
 
 def button_green(self):
-    global sleepl, st_max
-    if sleepl == 1:
-        sleepl = 0
-        os.system("mpc clear")
-        os.system("mpc load play-stories")
-        Playlist.reinit()
-        indicate("Loaded stories", 2)
-    else:
-        sleepl = 1
-        os.system("mpc clear")
-        os.system("mpc load play-sleep")
-        Playlist.reinit()
-        indicate("Loaded sleep", 2)       
+    global rswitch, switch_mode
+    if switch_mode == 0:
+        rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback_p)   
+        switch_mode = 1
+    else:  
+        rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)   
+        switch_mode = 0
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)

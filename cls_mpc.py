@@ -1,4 +1,4 @@
-import os
+import os, glob
 
 class Playlist:
 	def reinit(self):
@@ -8,6 +8,8 @@ class Playlist:
 
 	def __init__(self):
 		self.reinit()
+		self.playlists = glob.glob("*.m3u")
+		self.playlists_length = len(self.playlists)
 		
 
 
