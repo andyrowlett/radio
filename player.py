@@ -117,9 +117,11 @@ def button_green(self):
     GPIO.remove_event_detect(PIN_A)
     GPIO.remove_event_detect(PIN_B)
     if switch_mode == 0:
+        indicate("Select story")
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback_p)   
         switch_mode = 1
     else:  
+        indicate("Select track")
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)   
         switch_mode = 0
 
