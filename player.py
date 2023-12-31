@@ -123,23 +123,23 @@ def button_green(self):
     GPIO.remove_event_detect(PIN_A)
     GPIO.remove_event_detect(PIN_B)
     if switch_mode == 0:
-        indicate("Select story")
+        indicate("Select story", 2)
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback_p)   
         switch_mode = 1
     else:  
-        indicate("Select track")
+        indicate("Select track", 2)
         rswitch = RotaryEncoder(PIN_A,PIN_B,False,rotary_unit_callback)   
         switch_mode = 0
 
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=400)
+GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=500)
 # Yellow button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=400)
+GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=500)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=400)
+GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=500)
 
 # Setup additional grounds for rotary encoder
 GPIO.setup(5, GPIO.OUT)
