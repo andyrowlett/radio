@@ -1,15 +1,15 @@
 #EXTM3U
-#EXTINF:1, cbeebies  (1)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/cbeebies_radio.m3u8
+#EXTINF:1, cbeebies  (0.75)
+http://listen-funkids.sharp-stream.com/funkidsjunior.mp3?ref=RF
 #EXTINF:2, WBUR (0.6)
 http://wbur-sc.streamguys.com:80/
-#EXTINF:3, BBC 3 (0.92)
+#EXTINF:3, BBC 3 (0.99)
 http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_three/bbc_radio_three.isml/bbc_radio_three-audio%3d96000.norewind.m3u8
-#EXTINF:4, BBC 4 (0.7)
+#EXTINF:4, BBC 4 (0.75)
 http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_fourfm/bbc_radio_fourfm.isml/bbc_radio_fourfm-audio%3d96000.norewind.m3u8
-#EXTINF:5, 5 live  (0.7)
+#EXTINF:5, 5 live  (0.75)
 http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_radio_five_live/bbc_radio_five_live.isml/bbc_radio_five_live-audio%3d96000.norewind.m3u8
-#EXTINF:6, BBC 6 Music  (0.7)
+#EXTINF:6, BBC 6 Music  (0.75)
 http://as-hls-ww-live.akamaized.net/pool_904/live/ww/bbc_6music/bbc_6music.isml/bbc_6music-audio%3d96000.norewind.m3u8
 #EXTINF:7, World service  (0.75)
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_world_service.m3u8
@@ -17,13 +17,13 @@ http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low
 http://1940sradio1.co.uk:8100/1%20
 #EXTINF:9, Jazz London (0.6)
 http://radio.canstream.co.uk:8075/live.mp3
-#EXTINF:10, HBR1 - Dream Factory  (0.6)
-http://radio.hbr1.com/stream/ambient.aac
-#EXTINF:11, Nightride FM  (0.6)
-https://stream.nightride.fm/nightride.m4a
-#EXTINF:12, Nightride Chillsynth  (0.6)
-https://stream.nightride.fm/chillsynth.m4a
-#EXTINF:13, Chill (0.7)
+#EXTINF:10, Chill (0.7)
 http://uk2.internet-radio.com:8171
+#EXTINF:11, HBR1 - Dream Factory  (0.6)
+http://radio.hbr1.com/stream/ambient.aac
+#EXTINF:12, Nightride FM  (0.6)
+https://stream.nightride.fm/nightride.m4a
+#EXTINF:13, Nightride Chillsynth  (0.6)
+https://stream.nightride.fm/chillsynth.m4a
 #EXTINF:14, Classic metal (0.7)
 https://quincy.torontocast.com:2100/stream
