@@ -41,6 +41,7 @@ mpd config:
     add line:mixer_type                      "software"
 
 
-
+bluetooth:
+https://wiki.archlinux.org/title/Music_Player_Daemon/Tips_and_tricks#Local_(with_separate_mpd_user)
 
 enable gpio and i2c in raspi-config
