@@ -13,5 +13,5 @@ time.sleep(5)
 
 os.system("mpc clear")
 os.system("mpc load SleepyTime")
-os.system("mpc volume 30")
+os.system("mpc volume 20")
 os.system("mpc play 1")
