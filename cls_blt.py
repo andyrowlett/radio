@@ -15,3 +15,6 @@ class Blue:
     def disconnect(self):
         if self.device:
             os.system("bluetoothctl disconnect %s" % self.device)
+
+Blue = Blue()
+Blue.connect(Blue.square)

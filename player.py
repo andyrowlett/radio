@@ -3,7 +3,7 @@ from time import sleep
 from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
-import time, os, cls_mpc
+import time, os, cls_mpc, cls_blt
 
 # Define vars to track what is happening
 vol = 30
@@ -20,6 +20,7 @@ GPIO.setmode(GPIO.BCM)
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
 os.system("mpc load %s" % current_list_name)
+
 
 Playlist = cls_mpc.Playlist()
 
