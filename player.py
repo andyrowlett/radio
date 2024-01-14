@@ -18,7 +18,7 @@ current_list_name = "Moana"
 GPIO.setmode(GPIO.BCM) 
 
 Blue = cls_blt.Blue()
-Blue.connect(Blue.marsh)
+Blue.connect(Blue.square)
 
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
@@ -124,10 +124,9 @@ red_mode = 1
 
 def button_red(self):
     global play, pause, red_mode
-    if red_mode == 2:
-        indicate("Connecting...", 2)
-        Blue = cls_blt.Blue()
-        Blue.connect(Blue.marsh)
+
+    Blue = cls_blt.Blue()
+    Blue.connect(Blue.square)
 
     play = 0
     pause = 0
