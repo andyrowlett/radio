@@ -17,6 +17,9 @@ current_list = 1
 current_list_name = "Moana"
 GPIO.setmode(GPIO.BCM) 
 
+Blue = cls_blt.Blue()
+Blue.connect(Blue.marsh)
+
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
 os.system("mpc load %s" % current_list_name)
