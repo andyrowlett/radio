@@ -123,7 +123,7 @@ def button_yellow(self):
 red_mode = 1
 
 def button_red(self):
-    if red_mode = 2:
+    if red_mode == 2:
         indicate("Connecting...", 2)
         Blue = cls_blt.Blue()
         Blue.connect(Blue.marsh)
@@ -159,7 +159,7 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=500)
 # red button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=500)
+GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=100)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=500)
