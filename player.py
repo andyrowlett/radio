@@ -14,7 +14,7 @@ pause = 0
 switch_mode = 0
 current_file = 0
 current_list = 1
-current_list_name = "play-sleep"
+current_list_name = "Moana"
 GPIO.setmode(GPIO.BCM) 
 
 os.system("mpc volume %i" % vol)
