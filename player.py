@@ -145,7 +145,7 @@ def button_green(self):
 # Yellow button
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(23, GPIO.RISING, callback=button_yellow, bouncetime=500)
-# Yellow button
+# red button
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=500)
 # green button
@@ -157,6 +157,9 @@ GPIO.setup(5, GPIO.OUT)
 GPIO.output(5, GPIO.LOW)
 GPIO.setup(13, GPIO.OUT)
 GPIO.output(13, GPIO.LOW)
+# additional out for player 2, which does not have nive 3v outs
+GPIO.setup(26, GPIO.OUT)
+GPIO.output(26, GPIO.HIGH)
 
 # Define GPIO inputs for rotary encoder
 PIN_A = 27	
