@@ -120,13 +120,22 @@ def button_yellow(self):
             pause = 0
     print("Yellow button")
     
+red_mode = 1
+
 def button_red(self):
+    if red_mode = 2:
+        indicate("Connecting...", 2)
+        Blue = cls_blt.Blue()
+        Blue.connect(Blue.marsh)
     global play, pause
     play = 0
     pause = 0
     os.system("mpc stop")
     indicate("Stop", 2)
     print("red")
+    red_mode = 2
+    time.sleep(1)
+    red_mode = 1
 
 def button_green(self):
     global rswitch, switch_mode
