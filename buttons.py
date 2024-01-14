@@ -35,3 +35,12 @@ GPIO.add_event_detect(24, GPIO.RISING, callback=button_red, bouncetime=500)
 # green button
 GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(25, GPIO.RISING, callback=button_green, bouncetime=500)
+
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    print("Keyboard stop, exit...")
+    GPIO.cleanup()
+except:
+    GPIO.cleanup()
