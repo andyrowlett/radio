@@ -10,7 +10,7 @@
 # 
 #
 
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO, time
 
 class RotaryEncoder:
 
@@ -26,9 +26,12 @@ class RotaryEncoder:
     direction = 0
 
     # Initialise rotary encoder object
-    def __init__(self,pinA,pinB,button,callback):
+    def __init__(self,pinA,pinB,button,callback, bounce=200, rotary_bounce=100):
         self.pinA = pinA
         self.pinB = pinB
+        self.button = button
+        self.bounce = bounce
+        self.rbounce = rotary_bounce
         if button:
             self.button = button
         self.callback = callback
@@ -52,8 +55,9 @@ class RotaryEncoder:
         # Add event detection to the GPIO inputs
         GPIO.add_event_detect(self.pinA, GPIO.BOTH, callback=self.switch_event)
         GPIO.add_event_detect(self.pinB, GPIO.BOTH, callback=self.switch_event)
+
         if button:
-            GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=200)
+            GPIO.add_event_detect(self.button, GPIO.BOTH, callback=self.button_event, bouncetime=self.bounce)
 
 
     # Call back routine called by switch events
@@ -90,7 +94,9 @@ class RotaryEncoder:
                 self.direction = self.ANTICLOCKWISE
         if event > 0:
             self.callback(event)
+        #time.sleep(self.rbounce/1000)
         return
+
 
 
     # Push button up event

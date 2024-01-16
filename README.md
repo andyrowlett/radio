@@ -22,9 +22,10 @@ installing gh if not in repo:
     && sudo apt update \
     && sudo apt install gh -y
 
-login to gh
+gh:
     gh auth login
-clone radio
+    
+clone radio:
     gh clone radio
 
 adafruit audio hat:

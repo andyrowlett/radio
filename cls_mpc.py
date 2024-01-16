@@ -10,6 +10,8 @@ class Playlist:
 		os.chdir("/home/station/radio/pls/")
 		self.reinit()
 		self.playlists = glob.glob("*.m3u")
+		self.playlists.sort()
+		self.playlist
 		self.playlists_length = len(self.playlists)
 
 	def get_track(self, number):
