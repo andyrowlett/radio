@@ -22,7 +22,7 @@ os.system("mpc clear")
 os.system("mpc load %s" % current_list_name)
 
 
-Playlist = cls_mpc.Playlist()
+Playlist = cls_mpc.Playlist().sort()
 
 lcd_test = 0
 try:
