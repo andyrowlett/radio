@@ -94,7 +94,7 @@ class RotaryEncoder:
                 self.direction = self.ANTICLOCKWISE
         if event > 0:
             self.callback(event)
-        time.sleep(self.rbounce/1000)
+        #time.sleep(self.rbounce/1000)
         return
 
 
