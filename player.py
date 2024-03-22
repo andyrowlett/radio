@@ -44,8 +44,8 @@ def indicate(text, line=1):
         else:
             text = text[:16]
         display.lcd_display_string(text, line)
-        asyncio.sleep(20)
-        display.lcd_backlight(0)
+        #asyncio.sleep(20)
+        #display.lcd_backlight(0)
     else:
         print(text)
 
