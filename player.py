@@ -4,6 +4,7 @@ from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time, os, cls_mpc, cls_blt
+import asyncio
 
 # Define vars to track what is happening
 vol = 30
@@ -43,6 +44,8 @@ def indicate(text, line=1):
         else:
             text = text[:16]
         display.lcd_display_string(text, line)
+        asyncio.sleep(20)
+        display.lcd_backlight(0)
     else:
         print(text)
 
