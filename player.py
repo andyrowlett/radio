@@ -4,7 +4,7 @@ from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time, os, cls_mpc, cls_blt
-from threading import Thread
+from multiprocessing import Process
 
 
 # Define vars to track what is happening
@@ -29,19 +29,22 @@ os.system("mpc load %s" % current_list_name)
 ### SLEEP MODE ###
 
 awake = 1
+sleepint = 0
 
 def wakeUp():
-    global awake
+    global awake, sleepint
     awake = 1
+    sleepint += 1
     display.lcd_backlight(1)
     try:
-        Thread(target=goSleep).start()
+        p = Process(target=goSleep, args=(sleepint,))
+        p.start()
     except:
         print('n')
 
-def goSleep():
-    global awake
-    if not awake:
+def goSleep(s):
+    global awake, sleepint
+    if not awake or s != sleepint:
         return
     time.sleep(20)
     awake = 0
@@ -109,6 +112,7 @@ def show_playlist():
 
 def volume_callback(event):
     wakeUp()
+    global vol
     if event == RotaryEncoder.ANTICLOCKWISE:
         if vol < 100:
             vol += v_step
