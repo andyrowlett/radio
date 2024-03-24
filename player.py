@@ -34,7 +34,10 @@ def wakeUp():
     global awake
     awake = 1
     display.lcd_backlight(1)
-    Thread(target=goSleep).start()
+    try:
+        Thread(target=goSleep).start()
+    except:
+        print('n')
 
 def goSleep():
     global awake
