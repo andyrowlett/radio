@@ -4,7 +4,8 @@ from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time, os, cls_mpc, cls_blt
-import asyncio
+from threading import Thread
+
 
 # Define vars to track what is happening
 vol = 30
@@ -24,6 +25,27 @@ Blue.connect(Blue.square)
 os.system("mpc volume %i" % vol)
 os.system("mpc clear")
 os.system("mpc load %s" % current_list_name)
+
+### SLEEP MODE ###
+
+awake = 1
+
+def wakeUp():
+    global awake
+    awake = 1
+    display.lcd_backlight(1)
+    Thread(target=goSleep).start()
+
+def goSleep():
+    global awake
+    if not awake:
+        return
+    time.sleep(20)
+    awake = 0
+    display.lcd_backlight(0)
+
+
+### END SLEEP MODE ###
 
 
 Playlist = cls_mpc.Playlist()
@@ -83,7 +105,7 @@ def show_playlist():
 
 
 def volume_callback(event):
-    global vol
+    wakeUp()
     if event == RotaryEncoder.ANTICLOCKWISE:
         if vol < 100:
             vol += v_step
@@ -95,6 +117,7 @@ def volume_callback(event):
 
 
 def button_yellow(self):
+    wakeUp()
     global play, pause, switch_mode, current_file, current_list
     if switch_mode:
         # in playlist mode, so load that playlist, and return to track mode
@@ -126,6 +149,7 @@ def button_yellow(self):
 red_mode = 1
 
 def button_red(self):
+    wakeUp()
     global play, pause, red_mode
 
     Blue = cls_blt.Blue()
@@ -141,6 +165,7 @@ def button_red(self):
     red_mode = 1
 
 def button_green(self):
+    wakeUp()
     global rswitch, switch_mode
     GPIO.remove_event_detect(PIN_A)
     GPIO.remove_event_detect(PIN_B)
