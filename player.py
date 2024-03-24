@@ -16,7 +16,7 @@ pause = 0
 switch_mode = 0
 current_file = 0
 current_list = 1
-current_list_name = "Moana"
+current_list_name = "NickCope"
 GPIO.setmode(GPIO.BCM) 
 
 Blue = cls_blt.Blue()
@@ -217,8 +217,8 @@ PIN_VA = 6
 PIN_VB = 12
 volEncode = RotaryEncoder(PIN_VA,PIN_VB,False,volume_callback)
 
-indicate("Player 1")
-indicate("4 Beth & Sophie", 2)
+indicate("Player 2")
+indicate("Sophie's player", 2)
 
 try:
     while True:
