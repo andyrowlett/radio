@@ -4,8 +4,8 @@ from datetime import datetime
 from rotary_class import RotaryEncoder
 import RPi.GPIO as GPIO
 import time, os, cls_mpc, cls_blt
-from multiprocessing import Process
-
+#from multiprocessing import Process
+from threading import Thread
 
 # Define vars to track what is happening
 vol = 30
@@ -37,16 +37,15 @@ def wakeUp():
     sleepint += 1
     display.lcd_backlight(1)
     try:
-        p = Process(target=goSleep, args=(sleepint,))
-        p.start()
+        Thread(target=goSleep, args=(sleepint, )).start()
     except:
-        print('n')
+        pass
 
 def goSleep(s):
+    time.sleep(20)
     global awake, sleepint
     if not awake or s != sleepint:
         return
-    time.sleep(20)
     awake = 0
     display.lcd_backlight(0)
 
